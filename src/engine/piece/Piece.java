@@ -18,10 +18,16 @@ public abstract class Piece {
 	 							225: south-west
 	 							270: west
 	 							315: north-west */
-	Colour colour;
+	private final Colour colour;
 	
 	
-	public abstract List<Action> calculateMoves(Rank rank, File file, List<Tile> occupiedTiles);
+	protected Piece(Colour colour, int direction) {
+		this.colour = colour;
+		this.direction = direction;
+	}
+	
+	public abstract List<Action> calculateMoves(Rank rank, File file, 
+												List<Tile> occupiedTiles);
 	
 	
 	
