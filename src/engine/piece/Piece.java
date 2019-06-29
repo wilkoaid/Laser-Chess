@@ -3,8 +3,6 @@ package engine.piece;
 import java.util.List;
 
 import engine.Colour;
-import engine.File;
-import engine.Rank;
 import engine.action.Action;
 import engine.board.Tile;
 
@@ -26,8 +24,19 @@ public abstract class Piece {
 		this.direction = direction;
 	}
 	
-	public abstract List<Action> calculateMoves(Rank rank, File file, 
-												List<Tile> occupiedTiles);
+	public int getDirection() {
+		return direction;
+	}
+
+	public Colour getColour() {
+		return colour;
+	}
+
+	public void setDirection(int direction) {
+		this.direction = direction;
+	}
+
+	public abstract List<Action> calculateMoves(Tile thisTile, List<Tile> occupiedTiles);
 	
 	
 	

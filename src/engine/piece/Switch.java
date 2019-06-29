@@ -3,8 +3,6 @@ package engine.piece;
 import java.util.List;
 
 import engine.Colour;
-import engine.File;
-import engine.Rank;
 import engine.action.Action;
 import engine.board.Tile;
 
@@ -16,7 +14,7 @@ public class Switch extends Piece {
 	}
 
 	@Override
-	public List<Action> calculateMoves(Rank rank, File file, List<Tile> occupiedTiles) {
+	public List<Action> calculateMoves(Tile thisTile, List<Tile> occupiedTiles) {
 		// TODO Auto-generated method stub
 		return null;
 	}
