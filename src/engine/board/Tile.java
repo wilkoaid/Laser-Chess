@@ -64,5 +64,7 @@ public class Tile {
 		return file;
 	}
 	
-	
+	public String toString() {
+		return this.file.getString() + this.rank.getString(); 
+	}
 }

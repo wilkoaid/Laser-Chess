@@ -2,24 +2,30 @@ package engine;
 
 
 public enum File {
-	A(1),
-	B(2),
-	C(3),
-	D(4),
-	E(5),
-	F(6),
-	G(7),
-	H(8),
-	I(9),
-	J(10);
+	A(1,"A"),
+	B(2,"B"),
+	C(3,"C"),
+	D(4,"D"),
+	E(5,"E"),
+	F(6,"F"),
+	G(7,"G"),
+	H(8,"H"),
+	I(9,"I"),
+	J(10,"J");
 	
 	private int val;
+	private String string;
 	
-	private File(int val) {
+	private File(int val, String string) {
 		this.val = val;
+		this.string = string;
 	}
 	
 	public int getVal() {
         return this.val;
     }
+	
+	public String getString() {
+		return this.string;
+	}
 }
