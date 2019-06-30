@@ -13,24 +13,24 @@ public class Tile {
 	private Piece piece;
 	
 	public Tile(Piece piece, File file, Rank rank) {
-		this.empty = false;
 		this.offboard = false;
+		this.empty = false;
 		this.piece = piece;
 		this.file = file;
 		this.rank = rank;
 	}
 	
 	public Tile(File file, Rank rank) {
-		this.empty = true;
 		this.offboard = false;
+		this.empty = true;
 		this.piece = null;
 		this.file = file;
 		this.rank = rank;
 	}
 	
 	public Tile() {
-		this.empty = true;
 		this.offboard = true;
+		this.empty = false;
 		this.piece = null;
 		this.file = null;
 		this.rank = null;

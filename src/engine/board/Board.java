@@ -8,13 +8,42 @@ import engine.File;
 import engine.Rank;
 
 public class Board {
-	Tile[] board = new Tile[120];
-	List<Tile> activeTilesWhite;
-	List<Tile> activeTilesBlack;
-	Colour turn;
+	private final Tile[] board;
+	private List<Tile> activeTilesWhite;
+	private List<Tile> activeTilesBlack;
+	private Colour turn;
 	
+	public void setActiveTilesWhite(List<Tile> activeTilesWhite) {
+		this.activeTilesWhite = activeTilesWhite;
+	}
+
+	public void setActiveTilesBlack(List<Tile> activeTilesBlack) {
+		this.activeTilesBlack = activeTilesBlack;
+	}
+
+	public void setTurn(Colour turn) {
+		this.turn = turn;
+	}
+
+	public Tile[] getBoard() {
+		return board;
+	}
+
+	public List<Tile> getActiveTilesWhite() {
+		return activeTilesWhite;
+	}
+
+	public List<Tile> getActiveTilesBlack() {
+		return activeTilesBlack;
+	}
+
+	public Colour getTurn() {
+		return turn;
+	}
+
 	public Board() {
 		this.turn = Colour.WHITE;
+		board = new Tile[120];
 		initialiseBoard();
 	}
 
@@ -29,9 +58,12 @@ public class Board {
 	 * @param rank
 	 * @return
 	 */
-	private int getArrayIndex(File file, Rank rank) {
+	public int getArrayIndex(File file, Rank rank) {
 		
 		return 0;
 	}
 	
+	public void calculateActiveTiles() {
+		
+	}
 }

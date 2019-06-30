@@ -8,7 +8,7 @@ import engine.board.Tile;
 
 public class King extends Piece {
 
-	protected King(Colour colour, int direction) {
+	public King(Colour colour, int direction) {
 		super(colour, direction);
 		// TODO Auto-generated constructor stub
 	}
