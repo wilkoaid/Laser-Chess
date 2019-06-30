@@ -3,7 +3,13 @@ package engine.action;
 import engine.board.Tile;
 
 public class Swap extends Action {
-	Tile destinationTile;
+	private Tile destinationTile;
+	
+	public Swap(Tile sourceTile) {
+		super(sourceTile);
+		// TODO Auto-generated constructor stub
+	}
+
 
 	@Override
 	void makeMove() {

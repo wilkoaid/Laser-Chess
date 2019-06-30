@@ -8,7 +8,7 @@ import engine.board.Tile;
 
 public class Laser extends Piece {
 
-	protected Laser(Colour colour, int direction) {
+	public Laser(Colour colour, int direction) {
 		super(colour, direction);
 		// TODO Auto-generated constructor stub
 	}

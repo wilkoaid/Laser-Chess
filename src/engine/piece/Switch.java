@@ -8,7 +8,7 @@ import engine.board.Tile;
 
 public class Switch extends Piece {
 
-	protected Switch(Colour colour, int direction) {
+	public Switch(Colour colour, int direction) {
 		super(colour, direction);
 		// TODO Auto-generated constructor stub
 	}
