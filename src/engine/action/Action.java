@@ -3,10 +3,9 @@ package engine.action;
 import engine.board.Tile;
 
 public abstract class Action {
-	private Tile sourceTile;
+	protected Tile sourceTile;
 	
 	public Action(Tile sourceTile) {
-		super();
 		this.sourceTile = sourceTile;
 	}
 
@@ -15,5 +14,7 @@ public abstract class Action {
 	 */
 	abstract void makeMove();
 	
-	public void fireLaser() {}
+	public void fireLaser() {
+		//  CODE HERE
+	}
 }

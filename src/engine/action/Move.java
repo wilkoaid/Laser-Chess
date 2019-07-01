@@ -12,18 +12,17 @@ public class Move extends Action {
 		this.destination = destination;
 	}
 
-
-
 	public Tile getDestination() {
 		return destination;
 	}
 
-
-
 	@Override
 	void makeMove() {
-		// TODO Auto-generated method stub
+		// move to tile
+		/* CODE HERE  */
 		
+		// fire laser to finish action
+		this.fireLaser();
 	}
 	
 }
