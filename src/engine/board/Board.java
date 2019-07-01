@@ -15,10 +15,15 @@ public class Board {
 	private Set<Tile> occupiedTilesBlack;
 	private Colour turn;
 	
+	public boolean whiteKing;
+	public boolean blackKing;
+	
 	public Board() {
-		this.turn = Colour.WHITE;
 		board = new Tile[120];
 		initialiseBoardACE();
+		this.turn = Colour.WHITE;
+		this.whiteKing = true;
+		this.blackKing = true;
 	}
 	
 	/**
