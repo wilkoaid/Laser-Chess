@@ -14,7 +14,7 @@ public class King extends Piece {
 	}
 
 	@Override
-	public List<Action> calculateActions(Tile thisTile, List<Tile> occupiedTiles) {
+	public List<Action> calculateActions(Tile thisTile, Tile[] board) {
 		// TODO Auto-generated method stub
 		return null;
 	}

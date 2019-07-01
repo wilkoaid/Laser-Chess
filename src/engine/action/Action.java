@@ -17,4 +17,8 @@ public abstract class Action {
 	public void fireLaser() {
 		//  CODE HERE
 	}
+	
+	public String toString() {
+		return "";
+	}
 }
