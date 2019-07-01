@@ -36,7 +36,7 @@ public abstract class Piece {
 		this.direction = direction;
 	}
 
-	public abstract List<Action> calculateMoves(Tile thisTile, List<Tile> occupiedTiles);
+	public abstract List<Action> calculateActions(Tile thisTile, List<Tile> occupiedTiles);
 	
 	
 	

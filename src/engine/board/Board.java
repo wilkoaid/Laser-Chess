@@ -10,17 +10,20 @@ import engine.Rank;
 
 public class Board {
 	private final Tile[] board;
-	private Set<Tile> activeTilesWhite;
-	private Set<Tile> activeTilesBlack;
+	private Set<Tile> occupiedTilesWhite;
+	private Set<Tile> occupiedTilesBlack;
 	private Colour turn;
 	
 	public Board() {
 		this.turn = Colour.WHITE;
 		board = new Tile[120];
-		initialiseBoard();
+		initialiseBoardACE();
 	}
 	
-	private void initialiseBoard() {
+	/**
+	 * Initialise the board Tiles according to the "ACE" setup
+	 */
+	private void initialiseBoardACE() {
 		
 	}
 
@@ -36,16 +39,14 @@ public class Board {
 		return 0;
 	}
 	
-	public void calculateActiveTiles() {
+	/**
+	 * Re-calculate the set of Tiles that are currently occupied
+	 * 
+	 * ****Do I need this?****
+	 * 
+	 */
+	public void calculateOccupiedTiles() {
 		
-	}
-	
-	public void setActiveTilesWhite(Set<Tile> activeTilesWhite) {
-		this.activeTilesWhite = activeTilesWhite;
-	}
-	
-	public void setActiveTilesBlack(Set<Tile> activeTilesBlack) {
-		this.activeTilesBlack = activeTilesBlack;
 	}
 
 	public void setTurn(Colour turn) {
@@ -57,11 +58,11 @@ public class Board {
 	}
 
 	public Set<Tile> getActiveTilesWhite() {
-		return activeTilesWhite;
+		return occupiedTilesWhite;
 	}
 
 	public Set<Tile> getActiveTilesBlack() {
-		return activeTilesBlack;
+		return occupiedTilesBlack;
 	}
 
 	public Colour getTurn() {
