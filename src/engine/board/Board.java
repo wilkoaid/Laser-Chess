@@ -41,8 +41,7 @@ public class Board {
 	 * @return
 	 */
 	public int getArrayIndex(File file, Rank rank) {
-		
-		return 0;
+		return file.getVal() + 12 * rank.getVal();
 	}
 	
 	/**
