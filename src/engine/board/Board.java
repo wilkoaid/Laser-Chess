@@ -1,6 +1,5 @@
 package engine.board;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,11 +8,7 @@ import engine.Colour;
 import engine.File;
 import engine.Rank;
 import engine.action.Action;
-import engine.piece.Defender;
-import engine.piece.Deflector;
-import engine.piece.King;
-import engine.piece.Laser;
-import engine.piece.Switch;
+import engine.piece.*;
 
 public class Board {
 	private final Tile[] board;
