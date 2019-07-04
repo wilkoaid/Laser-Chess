@@ -18,13 +18,10 @@ public class Defender extends Piece {
 	@Override
 	public List<Action> calculateActions(Tile thisTile, Board board) {
 		List<Action> actions = new ArrayList<Action>();
-		int thisTileIndex = board.getArrayIndex(thisTile.getFile(), thisTile.getRank());
-		
 		// calculate movement actions
-		actions.addAll(calculateMoves(thisTile, thisTileIndex, board));
-		
-		
+		actions.addAll(calculateMoves(thisTile, board));
+		// calculate rotation actions
+		actions.addAll(calculateRotations(thisTile, board));
 		return actions;
 	}
-
 }

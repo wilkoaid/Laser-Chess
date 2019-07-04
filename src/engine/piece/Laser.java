@@ -1,9 +1,12 @@
 package engine.piece;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import engine.Colour;
+import engine.Direction;
 import engine.action.Action;
+import engine.action.Rotate;
 import engine.board.Board;
 import engine.board.Tile;
 
@@ -16,8 +19,17 @@ public class Laser extends Piece {
 
 	@Override
 	public List<Action> calculateActions(Tile thisTile, Board board) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Action> actions = new ArrayList<Action>();
+		
+		// calculate rotation actions
+		if(thisTile.getPiece().direction == 0 ||
+				thisTile.getPiece().direction == 180) {
+			actions.add(new Rotate(thisTile, Direction.ANTICLOCKWISE));
+		} else {
+			actions.add(new Rotate(thisTile, Direction.CLOCKWISE));
+		}
+		
+		return actions;
 	}
 	
 }

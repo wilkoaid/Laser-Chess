@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import engine.Colour;
+import engine.Direction;
 import engine.action.Action;
 import engine.action.Move;
+import engine.action.Rotate;
 import engine.board.Board;
 import engine.board.Tile;
 
@@ -41,8 +43,9 @@ public abstract class Piece {
 
 	public abstract List<Action> calculateActions(Tile thisTile, Board board);
 	
-	public List<Action> calculateMoves(Tile thisTile, int thisTileIndex, Board board){
+	public List<Action> calculateMoves(Tile thisTile, Board board){
 		List<Action> moves = new ArrayList<Action>();
+		int thisTileIndex = board.getArrayIndex(thisTile.getFile(), thisTile.getRank());
 		for(int i=-1; i<=1; i++) {
 			for(int j=-1; j<=1; j++) {
 				int destTileIndex = thisTileIndex + 12 * i + j;
@@ -58,6 +61,24 @@ public abstract class Piece {
 		}
 		return moves;
 	}
+	
+	public List<Action> calculateRotations(Tile thisTile, Board board) {
+		List<Action> rotations = new ArrayList<Action>();
+		
+		rotations.add(new Rotate(thisTile, Direction.CLOCKWISE));
+		rotations.add(new Rotate(thisTile, Direction.ANTICLOCKWISE));
+		
+		return rotations;
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
