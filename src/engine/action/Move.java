@@ -17,7 +17,7 @@ public class Move extends Action {
 	}
 
 	@Override
-	public void makeMove() {
+	public void makeAction() {
 		// move to tile
 		this.destination.setPiece(this.sourceTile.getPiece());
 		this.sourceTile.setPiece(null);

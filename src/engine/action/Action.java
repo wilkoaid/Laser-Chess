@@ -12,7 +12,7 @@ public abstract class Action {
 	/**
 	 * Each different action will implement this in a different way 
 	 */
-	public abstract void makeMove();
+	public abstract void makeAction();
 	
 	public void fireLaser() {
 		//  CODE HERE

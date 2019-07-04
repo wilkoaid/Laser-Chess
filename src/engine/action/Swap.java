@@ -14,7 +14,7 @@ public class Swap extends Action {
 
 
 	@Override
-	public void makeMove() {
+	public void makeAction() {
 		// check for illegal Swaps
 		if(!(this.sourceTile.getPiece() instanceof Switch)) {
 			System.out.println("Swap action can only be performed by Switch piece");

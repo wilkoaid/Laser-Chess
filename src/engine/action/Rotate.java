@@ -15,7 +15,7 @@ public class Rotate extends Action {
 
 	
 	@Override
-	public void makeMove() {
+	public void makeAction() {
 		// rotate piece
 		Piece piece = this.sourceTile.getPiece();
 		if(this.rotationDirection == Direction.CLOCKWISE) {
