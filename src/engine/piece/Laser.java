@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import engine.Colour;
-import engine.Direction;
+import engine.Rotation;
 import engine.action.Action;
 import engine.action.Rotate;
 import engine.board.Board;
@@ -24,9 +24,9 @@ public class Laser extends Piece {
 		// calculate rotation actions
 		if(thisTile.getPiece().direction == 0 ||
 				thisTile.getPiece().direction == 180) {
-			actions.add(new Rotate(thisTile, Direction.ANTICLOCKWISE));
+			actions.add(new Rotate(thisTile, Rotation.ANTICLOCKWISE));
 		} else {
-			actions.add(new Rotate(thisTile, Direction.CLOCKWISE));
+			actions.add(new Rotate(thisTile, Rotation.CLOCKWISE));
 		}
 		
 		return actions;

@@ -1,12 +1,12 @@
 package engine;
 
-public enum Direction {
+public enum Rotation {
 	CLOCKWISE("clockwise"),
 	ANTICLOCKWISE("anticlockwise");
 	
 	private String string;
 	
-	private Direction(String str) {
+	private Rotation(String str) {
 		this.string = str;
 	}
 	

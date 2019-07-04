@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import engine.Colour;
-import engine.Direction;
+import engine.Rotation;
 import engine.action.Action;
 import engine.action.Move;
 import engine.action.Rotate;
@@ -54,7 +54,7 @@ public abstract class Piece {
 						!board.getBoard()[destTileIndex].isEmpty()) {
 					continue;
 				} else {
-					Action move = new Move(thisTile, destinationTile);
+					Action move = new Move(thisTile, destinationTile,board);
 					moves.add(move);
 				}
 			}
@@ -65,8 +65,8 @@ public abstract class Piece {
 	public List<Action> calculateRotations(Tile thisTile, Board board) {
 		List<Action> rotations = new ArrayList<Action>();
 		
-		rotations.add(new Rotate(thisTile, Direction.CLOCKWISE));
-		rotations.add(new Rotate(thisTile, Direction.ANTICLOCKWISE));
+		rotations.add(new Rotate(thisTile, Rotation.CLOCKWISE));
+		rotations.add(new Rotate(thisTile, Rotation.ANTICLOCKWISE));
 		
 		return rotations;
 	}

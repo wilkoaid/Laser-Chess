@@ -102,7 +102,7 @@ public class EngineTest {
 		int takenPieceIndex = board.getArrayIndex(File.B,Rank.ONE);
 		board.getBoard()[takenPieceIndex].setPiece(new Deflector(Colour.WHITE,135));
 		board.getBoard()[takenPieceIndex].setEmpty(false);
-		Action action = new Move(board.getBoard()[takenPieceIndex],board.getBoard()[takenPieceIndex]);
+		Action action = new Move(board.getBoard()[takenPieceIndex],board.getBoard()[takenPieceIndex],board);
 		action.fireLaser();
 		// piece is destroyed by laser, piece is removed
 		board.getBoard()[takenPieceIndex].setPiece(null);

@@ -1,14 +1,14 @@
 package engine.action;
 
-import engine.Direction;
+import engine.Rotation;
 import engine.board.Tile;
 import engine.piece.Piece;
 
 public class Rotate extends Action {
-	private Direction rotationDirection;
+	private Rotation rotationDirection;
 	
 	
-	public Rotate(Tile sourceTile, Direction rotationDirection) {
+	public Rotate(Tile sourceTile, Rotation rotationDirection) {
 		super(sourceTile);
 		this.rotationDirection = rotationDirection;
 	}
@@ -18,7 +18,7 @@ public class Rotate extends Action {
 	public void makeAction() {
 		// rotate piece
 		Piece piece = this.sourceTile.getPiece();
-		if(this.rotationDirection == Direction.CLOCKWISE) {
+		if(this.rotationDirection == Rotation.CLOCKWISE) {
 			piece.setDirection((360 + piece.getDirection() + 90) % 360);
 		} else {
 			piece.setDirection((360 + piece.getDirection() - 90) % 360);
