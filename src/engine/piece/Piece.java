@@ -12,7 +12,7 @@ import engine.board.Board;
 import engine.board.Tile;
 
 public abstract class Piece {
-	int direction; /* angle in degrees
+	protected int direction; /* angle in degrees
 	 							0:   north
 	 							45:  north-east
 	 							90:  east

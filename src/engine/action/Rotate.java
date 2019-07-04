@@ -2,6 +2,7 @@ package engine.action;
 
 import engine.Direction;
 import engine.board.Tile;
+import engine.piece.Piece;
 
 public class Rotate extends Action {
 	private Direction rotationDirection;
@@ -16,7 +17,12 @@ public class Rotate extends Action {
 	@Override
 	void makeMove() {
 		// rotate piece
-		/* CODE HERE  */
+		Piece piece = this.sourceTile.getPiece();
+		if(this.rotationDirection == Direction.CLOCKWISE) {
+			piece.setDirection((360 + piece.getDirection() + 90) % 360);
+		} else {
+			piece.setDirection((360 + piece.getDirection() - 90) % 360);
+		}
 				
 		// fire laser to finish action
 		this.fireLaser();
