@@ -2,6 +2,7 @@ package engine.action;
 
 import engine.board.Tile;
 import engine.piece.King;
+import engine.piece.Piece;
 import engine.piece.Switch;
 
 public class Swap extends Action {
@@ -26,6 +27,9 @@ public class Swap extends Action {
 			return;
 		}
 		// perform Swap
+		Piece temp = this.sourceTile.getPiece();
+		this.destinationTile.setPiece(this.sourceTile.getPiece());
+		this.sourceTile.setPiece(temp);
 		
 		// fire laser to finish action
 		this.fireLaser();
