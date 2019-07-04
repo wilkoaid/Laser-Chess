@@ -16,7 +16,7 @@ public class EngineTest {
 	// test converting between rank/file and board array index
 	@Test
 	public void test1() {
-		Board board = new Board();
+		Board board = new Board(Colour.WHITE);
 		File file1 = File.A;
 		Rank rank1 = Rank.ONE;
 		// A1
@@ -69,7 +69,7 @@ public class EngineTest {
 	// test list of active tiles
 	@Test
 	public void test5() {
-		Board board = new Board();
+		Board board = new Board(Colour.WHITE);
 		Set<String> expected = new HashSet<String>();
 		expected.add("A1");
 		expected.add("E1");
@@ -96,7 +96,7 @@ public class EngineTest {
 	//test firing laser
 	@Test
 	public void test6() {
-		Board board = new Board();
+		Board board = new Board(Colour.WHITE);
 		
 		// put piece on tile next to laser and fire laser
 		int takenPieceIndex = board.getArrayIndex(File.B,Rank.ONE);

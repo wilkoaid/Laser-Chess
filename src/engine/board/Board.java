@@ -19,13 +19,13 @@ public class Board {
 	public boolean whiteKing;
 	public boolean blackKing;
 	
-	public Board() {
+	public Board(Colour startingColour) {
 		this.board = new Tile[120];
 		this.occupiedTilesBlack = new HashSet<Tile>();
 		this.occupiedTilesWhite = new HashSet<Tile>();
 		initialiseBoardACE();
 		calculateOccupiedTiles();
-		this.turn = Colour.WHITE;
+		this.turn = startingColour;
 		this.whiteKing = true;
 		this.blackKing = true;
 	}
@@ -135,19 +135,20 @@ public class Board {
 	}
 	
 	public void printActions() {
-		// loop over occupied tiles for white or black, calculate actions
+		/*
+		 *  loop over occupied tiles for white or black, calculate actions.
+		 *  
+		 *  print to terminal the moves in format:
+		 *  e.g. 
+		 *       Rotate J8 (Laser) clockwise
+		 *       Rotate J8 (Laser) anti-clockwise
+		 *       Move H7 (Deflector) to G7
+		 *       Swap F5 (Switch) with G6 (BLACK Defender)
+		 *       etc.
+		 */
 		if(turn == Colour.WHITE) {
 			for(Tile tile : this.occupiedTilesWhite) {
 				List<Action> actions = tile.getPiece().calculateActions(tile,this.board);
-				/*
-				 *  print to terminal the moves in format:
-				 *  e.g. 
-				 *       Rotate J8 (Laser) clockwise
-				 *       Rotate J8 (Laser) anti-clockwise
-				 *       Move H7 (Deflector) to G7
-				 *       Swap F5 (Switch) with G6 (BLACK Defender)
-				 *       etc.
-				 */
 				for(Action action : actions) {
 					System.out.println(action);
 				}
@@ -155,15 +156,6 @@ public class Board {
 		} else {
 			for(Tile tile : this.occupiedTilesBlack) {
 				List<Action> actions = tile.getPiece().calculateActions(tile,this.board);
-				/*
-				 *  print to terminal the moves in format:
-				 *  e.g. 
-				 *       Rotate J8 (Laser) clockwise
-				 *       Rotate J8 (Laser) anti-clockwise
-				 *       Move H7 (Deflector) to G7
-				 *       Swap F5 (Switch) with G6 (BLACK Defender)
-				 *       etc.
-				 */
 				for(Action action : actions) {
 					System.out.println(action);
 				}
