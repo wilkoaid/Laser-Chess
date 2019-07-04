@@ -15,7 +15,7 @@ public class Rotate extends Action {
 
 	
 	@Override
-	void makeMove() {
+	public void makeMove() {
 		// rotate piece
 		Piece piece = this.sourceTile.getPiece();
 		if(this.rotationDirection == Direction.CLOCKWISE) {
@@ -26,6 +26,11 @@ public class Rotate extends Action {
 				
 		// fire laser to finish action
 		this.fireLaser();
+	}
+	
+	public String toString() {
+		return "Rotate " + this.sourceTile.toString() + " (" + this.sourceTile.getPiece().toString() +
+				") " + this.rotationDirection.toString();
 	}
 	
 }

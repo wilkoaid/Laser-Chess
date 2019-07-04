@@ -24,5 +24,9 @@ public class Deflector extends Piece {
 		actions.addAll(calculateRotations(thisTile, board));
 		return actions;
 	}
+	
+	public String toString() {
+		return "Deflector";
+	}
 
 }

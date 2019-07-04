@@ -14,7 +14,6 @@ public class Switch extends Piece {
 
 	public Switch(Colour colour, int direction) {
 		super(colour, direction);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -36,7 +35,7 @@ public class Switch extends Piece {
 				} else if (board.getBoard()[destTileIndex].isEmpty()) {
 					moves.add(new Move(thisTile, destinationTile));
 				} else {
-					if(!(board.getBoard()[destTileIndex].getPiece() instanceof King) ||
+					if(!(board.getBoard()[destTileIndex].getPiece() instanceof King) &&
 							!(board.getBoard()[destTileIndex].getPiece() instanceof Switch)) {
 						moves.add(new Swap(thisTile, destinationTile));
 					}
@@ -49,4 +48,7 @@ public class Switch extends Piece {
 		return actions;
 	}
 	
+	public String toString() {
+		return "Switch";
+	}
 }

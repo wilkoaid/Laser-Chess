@@ -32,4 +32,8 @@ public class Laser extends Piece {
 		return actions;
 	}
 	
+	public String toString() {
+		return "Laser";
+	}
+	
 }

@@ -23,4 +23,7 @@ public class King extends Piece {
 		return actions;
 	}
 
+	public String toString() {
+		return "King";
+	}
 }

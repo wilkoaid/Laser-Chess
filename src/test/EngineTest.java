@@ -114,6 +114,13 @@ public class EngineTest {
 		assertEquals(expected,actual);
 	}
 	
+	// test move action
+	@Test public void test7() {
+		Board board = new Board(Colour.WHITE);
+		
+		board.printActions();
+	}
+	
 	
 	
 	

@@ -14,7 +14,7 @@ public class Swap extends Action {
 
 
 	@Override
-	void makeMove() {
+	public void makeMove() {
 		// check for illegal Swaps
 		if(!(this.sourceTile.getPiece() instanceof Switch)) {
 			System.out.println("Swap action can only be performed by Switch piece");
@@ -29,5 +29,11 @@ public class Swap extends Action {
 		
 		// fire laser to finish action
 		this.fireLaser();
+	}
+	
+	public String toString() {
+		return "Swap " + this.sourceTile.toString() + " (" + this.sourceTile.getPiece().toString() +
+				") with " + this.destinationTile.toString() + " (" + this.destinationTile.getPiece().getColour() + 
+				" " + this.destinationTile.getPiece().toString() + ")"; 
 	}
 }

@@ -17,12 +17,17 @@ public class Move extends Action {
 	}
 
 	@Override
-	void makeMove() {
+	public void makeMove() {
 		// move to tile
-		/* CODE HERE  */
+		//destination.getPiece() = ;
 		
 		// fire laser to finish action
 		this.fireLaser();
+	}
+	
+	public String toString() {
+		return "Move " + this.sourceTile.toString() + " (" + this.sourceTile.getPiece().toString() +
+				") to " + this.destination.toString(); 
 	}
 	
 }

@@ -24,4 +24,8 @@ public class Defender extends Piece {
 		actions.addAll(calculateRotations(thisTile, board));
 		return actions;
 	}
+	
+	public String toString() {
+		return "Defender";
+	}
 }
