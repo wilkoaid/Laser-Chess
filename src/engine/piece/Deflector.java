@@ -4,6 +4,7 @@ import java.util.List;
 
 import engine.Colour;
 import engine.action.Action;
+import engine.board.Board;
 import engine.board.Tile;
 
 public class Deflector extends Piece {
@@ -14,7 +15,7 @@ public class Deflector extends Piece {
 	}
 
 	@Override
-	public List<Action> calculateActions(Tile thisTile, Tile[] board) {
+	public List<Action> calculateActions(Tile thisTile, Board board) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import engine.Colour;
 import engine.action.Action;
+import engine.board.Board;
 import engine.board.Tile;
 
 public abstract class Piece {
@@ -36,7 +37,7 @@ public abstract class Piece {
 		this.direction = direction;
 	}
 
-	public abstract List<Action> calculateActions(Tile thisTile, Tile[] board);
+	public abstract List<Action> calculateActions(Tile thisTile, Board board);
 	
 	
 	

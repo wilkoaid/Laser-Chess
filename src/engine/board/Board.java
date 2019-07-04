@@ -153,7 +153,7 @@ public class Board {
 		this.actions.clear(); // clear previous list
 		if(turn == Colour.WHITE) {
 			for(Tile tile : this.occupiedTilesWhite) {
-				List<Action> actions = tile.getPiece().calculateActions(tile,this.board);
+				List<Action> actions = tile.getPiece().calculateActions(tile,this);
 				for(Action action : actions) {
 					System.out.println(action);
 				}
@@ -161,7 +161,7 @@ public class Board {
 			}
 		} else {
 			for(Tile tile : this.occupiedTilesBlack) {
-				List<Action> actions = tile.getPiece().calculateActions(tile,this.board);
+				List<Action> actions = tile.getPiece().calculateActions(tile,this);
 				for(Action action : actions) {
 					System.out.println(action);
 				}
