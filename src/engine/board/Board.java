@@ -1,5 +1,6 @@
 package engine.board;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,8 @@ public class Board {
 	private Set<Tile> occupiedTilesBlack;
 	private Colour turn;
 	
+	private List<Action> actions;
+	
 	public boolean whiteKing;
 	public boolean blackKing;
 	
@@ -23,6 +26,7 @@ public class Board {
 		this.board = new Tile[120];
 		this.occupiedTilesBlack = new HashSet<Tile>();
 		this.occupiedTilesWhite = new HashSet<Tile>();
+		this.actions = new ArrayList<Action>();
 		initialiseBoardACE();
 		calculateOccupiedTiles();
 		this.turn = startingColour;
@@ -34,13 +38,13 @@ public class Board {
 	 * Initialise the board Tiles according to the "ACE" setup
 	 */
 	private void initialiseBoardACE() {
-		// set whole board to offboard tiles
+		// set whole board to off-board tiles
 		for(int i = 0; i < this.board.length; i++) {
 			Tile tile = new Tile();
 			this.board[i] = tile;
 		}
 		
-		// set onboard tiles to empty tiles
+		// set on-board tiles to empty tiles
 		for(File file : File.values()) {
 			for(Rank rank : Rank.values()) {
 				int index = getArrayIndex(file,rank);
@@ -146,12 +150,14 @@ public class Board {
 		 *       Swap F5 (Switch) with G6 (BLACK Defender)
 		 *       etc.
 		 */
+		this.actions.clear(); // clear previous list
 		if(turn == Colour.WHITE) {
 			for(Tile tile : this.occupiedTilesWhite) {
 				List<Action> actions = tile.getPiece().calculateActions(tile,this.board);
 				for(Action action : actions) {
 					System.out.println(action);
 				}
+				this.actions.addAll(actions);
 			}
 		} else {
 			for(Tile tile : this.occupiedTilesBlack) {
@@ -159,6 +165,7 @@ public class Board {
 				for(Action action : actions) {
 					System.out.println(action);
 				}
+				this.actions.addAll(actions);
 			}
 		}
 	}
