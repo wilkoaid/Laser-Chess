@@ -21,20 +21,8 @@ public class Defender extends Piece {
 		int thisTileIndex = board.getArrayIndex(thisTile.getFile(), thisTile.getRank());
 		
 		// calculate movement actions
-		for(int i=-1; i<=1; i++) {
-			for(int j=-1; j<=1; j++) {
-				int destTileIndex = thisTileIndex + 12 * i + j;
-				Tile destinationTile = board.getBoard()[destTileIndex];
-				if(board.getBoard()[destTileIndex].isOffboard() ||
-						!board.getBoard()[destTileIndex].isEmpty()) {
-					continue;
-				} else {
-					Action action = new Move(thisTile, destinationTile);
-					actions.add(action);
-				}
-			}
-			
-		}
+		actions.addAll(calculateMoves(thisTile, thisTileIndex, board));
+		
 		
 		return actions;
 	}

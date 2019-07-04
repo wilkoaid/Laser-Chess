@@ -1,9 +1,11 @@
 package engine.piece;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import engine.Colour;
 import engine.action.Action;
+import engine.action.Move;
 import engine.board.Board;
 import engine.board.Tile;
 
@@ -38,6 +40,24 @@ public abstract class Piece {
 	}
 
 	public abstract List<Action> calculateActions(Tile thisTile, Board board);
+	
+	public List<Action> calculateMoves(Tile thisTile, int thisTileIndex, Board board){
+		List<Action> moves = new ArrayList<Action>();
+		for(int i=-1; i<=1; i++) {
+			for(int j=-1; j<=1; j++) {
+				int destTileIndex = thisTileIndex + 12 * i + j;
+				Tile destinationTile = board.getBoard()[destTileIndex];
+				if(board.getBoard()[destTileIndex].isOffboard() ||
+						!board.getBoard()[destTileIndex].isEmpty()) {
+					continue;
+				} else {
+					Action move = new Move(thisTile, destinationTile);
+					moves.add(move);
+				}
+			}
+		}
+		return moves;
+	}
 	
 	
 	
