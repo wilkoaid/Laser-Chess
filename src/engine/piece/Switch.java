@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import engine.Colour;
+import engine.Direction;
 import engine.action.Action;
 import engine.action.Move;
 import engine.action.Swap;
@@ -12,7 +13,7 @@ import engine.board.Tile;
 
 public class Switch extends Piece {
 
-	public Switch(Colour colour, int direction) {
+	public Switch(Colour colour, Direction direction) {
 		super(colour, direction);
 	}
 

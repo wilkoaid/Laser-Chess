@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import engine.Colour;
+import engine.Direction;
 import engine.action.Action;
 import engine.board.Board;
 import engine.board.Tile;
 
 public class Deflector extends Piece {
 
-	public Deflector(Colour colour, int direction) {
+	public Deflector(Colour colour, Direction direction) {
 		super(colour, direction);
 		// TODO Auto-generated constructor stub
 	}

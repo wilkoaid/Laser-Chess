@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import engine.Colour;
+import engine.Direction;
 import engine.action.Action;
 import engine.action.Move;
 import engine.board.Board;
@@ -11,7 +12,7 @@ import engine.board.Tile;
 
 public class Defender extends Piece {
 
-	public Defender(Colour colour, int direction) {
+	public Defender(Colour colour, Direction direction) {
 		super(colour, direction);
 	}
 

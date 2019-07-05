@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import engine.Colour;
+import engine.Direction;
 import engine.Rotation;
 import engine.action.Action;
 import engine.action.Rotate;
@@ -12,7 +13,7 @@ import engine.board.Tile;
 
 public class Laser extends Piece {
 
-	public Laser(Colour colour, int direction) {
+	public Laser(Colour colour, Direction direction) {
 		super(colour, direction);
 		// TODO Auto-generated constructor stub
 	}
@@ -22,8 +23,8 @@ public class Laser extends Piece {
 		List<Action> actions = new ArrayList<Action>();
 		
 		// calculate rotation actions
-		if(thisTile.getPiece().direction == 0 ||
-				thisTile.getPiece().direction == 180) {
+		if(thisTile.getPiece().direction == Direction.NORTH ||
+				thisTile.getPiece().direction == Direction.SOUTH) {
 			actions.add(new Rotate(thisTile, Rotation.ANTICLOCKWISE, board));
 		} else {
 			actions.add(new Rotate(thisTile, Rotation.CLOCKWISE, board));

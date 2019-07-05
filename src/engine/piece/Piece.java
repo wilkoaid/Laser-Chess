@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import engine.Colour;
+import engine.Direction;
 import engine.Rotation;
 import engine.action.Action;
 import engine.action.Move;
@@ -12,7 +13,7 @@ import engine.board.Board;
 import engine.board.Tile;
 
 public abstract class Piece {
-	protected int direction; /* angle in degrees
+	protected Direction direction; /* angle in degrees
 	 							0:   north
 	 							45:  north-east
 	 							90:  east
@@ -24,12 +25,12 @@ public abstract class Piece {
 	private final Colour colour;
 	
 	
-	protected Piece(Colour colour, int direction) {
+	protected Piece(Colour colour, Direction direction) {
 		this.colour = colour;
 		this.direction = direction;
 	}
 	
-	public int getDirection() {
+	public Direction getDirection() {
 		return direction;
 	}
 
@@ -37,7 +38,7 @@ public abstract class Piece {
 		return colour;
 	}
 
-	public void setDirection(int direction) {
+	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
 
