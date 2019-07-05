@@ -57,7 +57,7 @@ public class EngineTest {
 	@Test
 	public void test4() {
 		Tile tile = new Tile(new King(Colour.WHITE, 180),File.A,Rank.FIVE);
-		String expected = "A5";
+		String expected = "A5 (King)";
 		String actual = tile.toString();
 		
 		assertFalse(tile.isEmpty());
@@ -71,19 +71,19 @@ public class EngineTest {
 	public void test5() {
 		Board board = new Board(Colour.WHITE);
 		Set<String> expected = new HashSet<String>();
-		expected.add("A1");
-		expected.add("E1");
-		expected.add("F1");
-		expected.add("G1");
-		expected.add("H1");
-		expected.add("C2");
-		expected.add("A4");
-		expected.add("E4");
-		expected.add("F4");
-		expected.add("H4");
-		expected.add("A5");
-		expected.add("H5");
-		expected.add("G6");
+		expected.add("A1 (Laser)");
+		expected.add("E1 (Defender)");
+		expected.add("F1 (King)");
+		expected.add("G1 (Defender)");
+		expected.add("H1 (Deflector)");
+		expected.add("C2 (Deflector)");
+		expected.add("A4 (Deflector)");
+		expected.add("E4 (Switch)");
+		expected.add("F4 (Switch)");
+		expected.add("H4 (Deflector)");
+		expected.add("A5 (Deflector)");
+		expected.add("H5 (Deflector)");
+		expected.add("G6 (Deflector)");
 		
 		Set<Tile> actual = board.getOccupiedTilesBlack();
 		
@@ -114,9 +114,32 @@ public class EngineTest {
 		assertEquals(expected,actual);
 	}
 	
-	// test signedDifference method in Action class
+	// test firing laser and redirect onto deflector to take the piece
 	@Test
 	public void test7() {
+		Board board = new Board(Colour.WHITE);
+		Tile[] arr = board.getBoard();
+		
+		// put test pieces on board
+		int index1 = board.getArrayIndex(File.J, Rank.SEVEN);
+		int index2 = board.getArrayIndex(File.I, Rank.SEVEN);
+		arr[index1].setPiece(new Deflector(Colour.WHITE, 225));
+		arr[index1].setEmpty(false);
+		arr[index2].setPiece(new Deflector(Colour.WHITE, 315));
+		arr[index2].setEmpty(false);
+		Action action = new Rotate(arr[index2], Rotation.ANTICLOCKWISE, board);
+		action.fireLaser();
+		
+		Tile testTile = new Tile(File.I, Rank.SEVEN);
+		String expected = testTile.toString();
+		String actual = arr[index2].toString();
+		
+		assertEquals(expected, actual);
+	}
+	
+	// test signedDifference method in Action class
+	@Test
+	public void test8() {
 		Board board = new Board(Colour.WHITE);
 		
 		Tile tile = new Tile();

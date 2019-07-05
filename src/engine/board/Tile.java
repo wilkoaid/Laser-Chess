@@ -65,6 +65,11 @@ public class Tile {
 	}
 	
 	public String toString() {
-		return this.file.getString() + this.rank.getString(); 
+		String str = this.file.getString() + this.rank.getString();
+		if(this.piece != null) {
+			return str + " (" + piece.toString() + ")";
+		} else {
+			return str;
+		}
 	}
 }
