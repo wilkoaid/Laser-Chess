@@ -56,7 +56,7 @@ public class EngineTest {
 	// test creating occupied onboard tile
 	@Test
 	public void test4() {
-		Tile tile = new Tile(new King(Colour.WHITE,Direction.SOUTH),File.A,Rank.FIVE);
+		Tile tile = new Tile(new King(Colour.WHITE, 180),File.A,Rank.FIVE);
 		String expected = "A5";
 		String actual = tile.toString();
 		
@@ -100,7 +100,7 @@ public class EngineTest {
 		
 		// put piece on tile next to laser and fire laser
 		int takenPieceIndex = board.getArrayIndex(File.B,Rank.ONE);
-		board.getBoard()[takenPieceIndex].setPiece(new Deflector(Colour.WHITE,Direction.SOUTHEAST));
+		board.getBoard()[takenPieceIndex].setPiece(new Deflector(Colour.WHITE, 135));
 		board.getBoard()[takenPieceIndex].setEmpty(false);
 		Action action = new Move(board.getBoard()[takenPieceIndex],board.getBoard()[takenPieceIndex],board);
 		action.fireLaser();

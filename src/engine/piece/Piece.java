@@ -13,7 +13,7 @@ import engine.board.Board;
 import engine.board.Tile;
 
 public abstract class Piece {
-	protected Direction direction; /* angle in degrees
+	protected int direction; /* angle in degrees
 	 							0:   north
 	 							45:  north-east
 	 							90:  east
@@ -25,12 +25,12 @@ public abstract class Piece {
 	private final Colour colour;
 	
 	
-	protected Piece(Colour colour, Direction direction) {
+	protected Piece(Colour colour, int direction) {
 		this.colour = colour;
 		this.direction = direction;
 	}
 	
-	public Direction getDirection() {
+	public int getDirection() {
 		return direction;
 	}
 
@@ -38,7 +38,7 @@ public abstract class Piece {
 		return colour;
 	}
 
-	public void setDirection(Direction direction) {
+	public void setDirection(int direction) {
 		this.direction = direction;
 	}
 

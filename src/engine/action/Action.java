@@ -35,18 +35,18 @@ public abstract class Action {
 			tile = board.getBlackLaser();
 			laser = tile.getPiece();
 		}
-		Direction direction = laser.getDirection();
+		int direction = laser.getDirection();
 		scanTiles(direction,tile);
 	}
 	
-	public void scanTiles(Direction direction, Tile tile) {
+	public void scanTiles(int direction, Tile tile) {
+		int boardIndex = board.getArrayIndex(tile.getFile(), tile.getRank());
 		while (!tile.isOffboard()) {
-			int boardIndex = board.getArrayIndex(tile.getFile(), tile.getRank());
-			if (direction == Direction.SOUTH) {
+			if (direction == 180) {
 				boardIndex += 12;
-			} else if (direction == Direction.EAST) {
+			} else if (direction == 90) {
 				boardIndex += 1;
-			} else if (direction == Direction.NORTH) {
+			} else if (direction == 0) {
 				boardIndex -= 12;
 			} else { // WEST
 				boardIndex -= 1;
@@ -58,56 +58,9 @@ public abstract class Action {
 				if (piece instanceof Deflector) {
 					// get new direction based on current direction and facing direction of deflector
 					// finish action and remove deflector if laser kills deflector
-					Direction deflectorDirection = piece.getDirection();
-					if (direction == Direction.SOUTH) {
-						if(deflectorDirection == Direction.NORTHEAST) {
-							direction = Direction.EAST;
-						} else if(deflectorDirection == Direction.NORTHWEST) {
-							direction = Direction.WEST;
-						} else {
-							// laser kills piece
-							tile.setPiece(null);
-							// finish action
-							return;
-						}
-					} else if (direction == Direction.EAST) {
-						if (deflectorDirection == Direction.NORTHWEST) {
-							direction = Direction.NORTH;
-						} else if (deflectorDirection == Direction.SOUTHWEST) {
-							direction = Direction.SOUTH;
-						} else {
-							// laser kills piece
-							tile.setPiece(null);
-							// finish action
-							return;
-						}
-					} else if (direction == Direction.NORTH) {
-						if (deflectorDirection == Direction.SOUTHEAST) {
-							direction = Direction.EAST;
-						} else if (deflectorDirection == Direction.SOUTHWEST) {
-							direction = Direction.WEST;
-						} else {
-							// laser kills piece
-							tile.setPiece(null);
-							// finish action
-							return;
-						}
-					} else {
-						// direction == west
-						if (deflectorDirection == Direction.NORTHEAST) {
-							direction = Direction.NORTH;
-						} else if (deflectorDirection == Direction.SOUTHEAST) {
-							direction = Direction.SOUTH;
-						} else {
-							// laser kills piece
-							tile.setPiece(null);
-							// finish action
-							return;
-						}
-					}
+					
 				} else if (piece instanceof Defender) {
 					// finish action and remove defender if laser kills defender
-					Direction defenderDirection = piece.getDirection();
 				} else if (piece instanceof King) {
 					// finish game and declare winner based on colour of king
 				} else if (piece instanceof Switch) {
@@ -116,8 +69,42 @@ public abstract class Action {
 					// cannot kill laser piece
 					// finish action.
 				}
+		
 			}
 		}
 	}
+	
+	/**
+	 * Takes as inputs the direction of laser approach, the facing direction of the piece, and outputs
+	 * the signed difference between these two angles. E.g. laser beam approaching south (180 degrees)
+	 * and a Deflector with mirror facing north-east returns 135.  If the Deflector is facing
+	 * north-west then -135 is returned instead.
+	 * @param a direction of laser approach
+	 * @param b facing direction of piece
+	 * @return signed difference between a and b
+	 */
+	public int signedDifference(int a, int b) {
+		int d = Math.abs(a - b) % 360;
+		int r = d > 180 ? 360 - d : d;
+		
+		int sign = (a - b >= 0 && a - b <= 180) || (a - b <= -180 && a - b >= 360) ? 1 : -1;
+		r *= sign;
+		return r;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 

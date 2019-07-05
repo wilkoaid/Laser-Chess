@@ -11,7 +11,7 @@ import engine.board.Tile;
 
 public class King extends Piece {
 
-	public King(Colour colour, Direction direction) {
+	public King(Colour colour, int direction) {
 		super(colour, direction);
 		// TODO Auto-generated constructor stub
 	}

@@ -11,7 +11,7 @@ import engine.board.Tile;
 
 public class Deflector extends Piece {
 
-	public Deflector(Colour colour, Direction direction) {
+	public Deflector(Colour colour, int direction) {
 		super(colour, direction);
 		// TODO Auto-generated constructor stub
 	}

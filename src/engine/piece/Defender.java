@@ -12,7 +12,7 @@ import engine.board.Tile;
 
 public class Defender extends Piece {
 
-	public Defender(Colour colour, Direction direction) {
+	public Defender(Colour colour, int direction) {
 		super(colour, direction);
 	}
 

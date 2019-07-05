@@ -13,7 +13,7 @@ import engine.board.Tile;
 
 public class Switch extends Piece {
 
-	public Switch(Colour colour, Direction direction) {
+	public Switch(Colour colour, int direction) {
 		super(colour, direction);
 	}
 

@@ -13,7 +13,7 @@ import engine.board.Tile;
 
 public class Laser extends Piece {
 
-	public Laser(Colour colour, Direction direction) {
+	public Laser(Colour colour, int direction) {
 		super(colour, direction);
 		// TODO Auto-generated constructor stub
 	}
@@ -23,8 +23,8 @@ public class Laser extends Piece {
 		List<Action> actions = new ArrayList<Action>();
 		
 		// calculate rotation actions
-		if(thisTile.getPiece().direction == Direction.NORTH ||
-				thisTile.getPiece().direction == Direction.SOUTH) {
+		if(thisTile.getPiece().direction == 0 ||
+				thisTile.getPiece().direction == 180) {
 			actions.add(new Rotate(thisTile, Rotation.ANTICLOCKWISE, board));
 		} else {
 			actions.add(new Rotate(thisTile, Rotation.CLOCKWISE, board));
