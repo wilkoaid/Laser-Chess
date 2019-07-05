@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import engine.Colour;
-import engine.Direction;
 import engine.Rotation;
 import engine.action.Action;
 import engine.action.Rotate;

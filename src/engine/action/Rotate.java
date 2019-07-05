@@ -1,6 +1,5 @@
 package engine.action;
 
-import engine.Direction;
 import engine.Rotation;
 import engine.board.Board;
 import engine.board.Tile;

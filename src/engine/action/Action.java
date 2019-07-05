@@ -1,14 +1,9 @@
 package engine.action;
 
 import engine.Colour;
-import engine.Direction;
 import engine.board.Board;
 import engine.board.Tile;
-import engine.piece.Defender;
-import engine.piece.Deflector;
-import engine.piece.King;
-import engine.piece.Piece;
-import engine.piece.Switch;
+import engine.piece.*;
 
 public abstract class Action {
 	protected Tile sourceTile;
@@ -36,10 +31,13 @@ public abstract class Action {
 			laser = tile.getPiece();
 		}
 		int direction = laser.getDirection();
-		scanTiles(direction,tile);
-	}
-	
-	public void scanTiles(int direction, Tile tile) {
+		
+		/*
+		 * simulate laser path by searching through tiles and change the laser 
+		 * direction if reflecting off a mirror.  Destroy a piece if it is encountered
+		 * or finish the method without doing anything if the laser goes offboard
+		 */
+		
 		int boardIndex = board.getArrayIndex(tile.getFile(), tile.getRank());
 		while (!tile.isOffboard()) {
 			if (direction == 180) {
@@ -55,19 +53,46 @@ public abstract class Action {
 
 			if (!tile.isEmpty()) {
 				Piece piece = tile.getPiece();
+				int angleDelta = signedDifference(direction, piece.getDirection());
 				if (piece instanceof Deflector) {
 					// get new direction based on current direction and facing direction of deflector
 					// finish action and remove deflector if laser kills deflector
-					
+					if(angleDelta == 135) {
+						direction = (direction - 90 + 360) % 360;
+					} else if(angleDelta == -135) {
+						direction = (direction + 90) % 360;
+					} else {
+						tile.setPiece(null);
+						return;
+					}
 				} else if (piece instanceof Defender) {
 					// finish action and remove defender if laser kills defender
+					if(angleDelta == 180 || angleDelta == -180) {
+						return;
+					} else {
+						tile.setPiece(null);
+						return;
+					}
 				} else if (piece instanceof King) {
 					// finish game and declare winner based on colour of king
+					if(piece.getColour() == Colour.WHITE) {
+						board.setWhiteKing(false);
+						return;
+					} else {
+						board.setBlackKing(false);
+						return;
+					}
 				} else if (piece instanceof Switch) {
 					// get new direction based on current direction and facing direction of switch piece
+					if(angleDelta == 135 || angleDelta == -45) {
+						direction = (direction - 90 + 360) % 360;
+					} else if(angleDelta == -135 || angleDelta == 45) {
+						direction = (direction + 90) % 360;
+					}
 				} else { // piece == laser
 					// cannot kill laser piece
 					// finish action.
+					return;
 				}
 		
 			}
@@ -87,21 +112,9 @@ public abstract class Action {
 		int d = Math.abs(a - b) % 360;
 		int r = d > 180 ? 360 - d : d;
 		
-		int sign = (a - b >= 0 && a - b <= 180) || (a - b <= -180 && a - b >= 360) ? 1 : -1;
-		r *= sign;
-		return r;
+		int sign = ((a - b >= 0 && a - b <= 180) || (a - b <= -180 && a - b >= -360)) ? 1 : -1;
+		return r * sign;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

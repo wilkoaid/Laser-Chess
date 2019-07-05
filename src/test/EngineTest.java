@@ -97,28 +97,46 @@ public class EngineTest {
 	@Test
 	public void test6() {
 		Board board = new Board(Colour.WHITE);
+		Tile[] arr = board.getBoard();
 		
 		// put piece on tile next to laser and fire laser
-		int takenPieceIndex = board.getArrayIndex(File.B,Rank.ONE);
-		board.getBoard()[takenPieceIndex].setPiece(new Deflector(Colour.WHITE, 135));
-		board.getBoard()[takenPieceIndex].setEmpty(false);
-		Action action = new Move(board.getBoard()[takenPieceIndex],board.getBoard()[takenPieceIndex],board);
+		int index = board.getArrayIndex(File.J,Rank.SEVEN);
+		arr[index].setPiece(new Deflector(Colour.WHITE, 45));
+		arr[index].setEmpty(false);
+		Action action = new Rotate(arr[index], Rotation.ANTICLOCKWISE, board);
 		action.fireLaser();
 		// piece is destroyed by laser, piece is removed
-		board.getBoard()[takenPieceIndex].setPiece(null);
-		board.getBoard()[takenPieceIndex].setEmpty(true);
 		
-		Tile expected = new Tile(File.B,Rank.ONE);
-		Tile actual = board.getBoard()[takenPieceIndex];
+		Tile testTile = new Tile(File.J,Rank.SEVEN);
+		String expected = testTile.toString();
+		String actual = arr[index].toString();
 		
 		assertEquals(expected,actual);
 	}
 	
-	// test move action
-	@Test public void test7() {
+	// test signedDifference method in Action class
+	@Test
+	public void test7() {
 		Board board = new Board(Colour.WHITE);
 		
-		board.printActions();
+		Tile tile = new Tile();
+		
+		Action action = new Rotate(tile, Rotation.CLOCKWISE, board);
+		
+		int expected1 = 135;
+		int expected2 = -135;
+		int expected3 = -45;
+		int expected4 = 45;
+		
+		int actual1 = action.signedDifference(180, 45);
+		int actual2 = action.signedDifference(180, 315);
+		int actual3 = action.signedDifference(0, 45);
+		int actual4 = action.signedDifference(0, 315);
+		
+		assertEquals(expected1,actual1);
+		assertEquals(expected2,actual2);
+		assertEquals(expected3,actual3);
+		assertEquals(expected4,actual4);
 	}
 	
 	

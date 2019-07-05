@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 import engine.Colour;
-import engine.Direction;
 import engine.File;
 import engine.Rank;
 import engine.action.Action;
@@ -201,5 +200,13 @@ public class Board {
 	
 	public Tile getBlackLaser() {
 		return this.blackLaser;
+	}
+
+	public void setWhiteKing(boolean whiteKing) {
+		this.whiteKing = whiteKing;
+	}
+
+	public void setBlackKing(boolean blackKing) {
+		this.blackKing = blackKing;
 	}
 }
