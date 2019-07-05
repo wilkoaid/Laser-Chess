@@ -136,7 +136,7 @@ public class EngineTest {
 		
 		assertEquals(expected, actual);
 	}
-	
+
 	// test signedDifference method in Action class
 	@Test
 	public void test8() {

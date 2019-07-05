@@ -1,9 +1,6 @@
 package engine.board;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import engine.Colour;
 import engine.File;
@@ -156,18 +153,22 @@ public class Board {
 		 */
 		this.actions.clear(); // clear previous list
 		if(turn == Colour.WHITE) {
+			int number = 1;
 			for(Tile tile : this.occupiedTilesWhite) {
 				List<Action> actions = tile.getPiece().calculateActions(tile,this);
 				for(Action action : actions) {
-					System.out.println(action);
+					System.out.println(number + ". " + action);
+					number++;
 				}
 				this.actions.addAll(actions);
 			}
 		} else {
+			int number = 1;
 			for(Tile tile : this.occupiedTilesBlack) {
 				List<Action> actions = tile.getPiece().calculateActions(tile,this);
 				for(Action action : actions) {
-					System.out.println(action);
+					System.out.println(number + ". " + action);
+					number++;
 				}
 				this.actions.addAll(actions);
 			}
@@ -208,5 +209,9 @@ public class Board {
 
 	public void setBlackKing(boolean blackKing) {
 		this.blackKing = blackKing;
+	}
+
+	public List<Action> getActions() {
+		return this.actions;
 	}
 }

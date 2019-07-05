@@ -65,6 +65,9 @@ public class Tile {
 	}
 	
 	public String toString() {
+		if(this.isOffboard()) {
+			return "Offboard";
+		}
 		String str = this.file.getString() + this.rank.getString();
 		if(this.piece != null) {
 			return str + " (" + piece.toString() + ")";

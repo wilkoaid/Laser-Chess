@@ -21,16 +21,15 @@ public class Move extends Action {
 		this.destination.setPiece(this.sourceTile.getPiece());
 		this.sourceTile.setPiece(null);
 		
-		// recalculate occupied tiles
-		this.board.calculateOccupiedTiles();
-		
 		// fire laser to finish action
 		this.fireLaser();
+		
+		// recalculate occupied tiles
+		this.board.calculateOccupiedTiles();
 	}
 	
 	public String toString() {
-		return "Move " + this.sourceTile.toString() + " (" + this.sourceTile.getPiece().toString() +
-				") to " + this.destination.toString(); 
+		return "Move " + this.sourceTile.toString() + " to " + this.destination.toString(); 
 	}
 	
 }

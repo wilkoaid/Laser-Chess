@@ -39,18 +39,11 @@ public abstract class Action {
 		 */
 		
 		int boardIndex = board.getArrayIndex(tile.getFile(), tile.getRank());
+		boardIndex = getNextIndex(direction, boardIndex);
+		tile = board.getBoard()[boardIndex];
+		System.out.println("The laser takes the following path: ");
 		while (!tile.isOffboard()) {
-			if (direction == 180) {
-				boardIndex += 12;
-			} else if (direction == 90) {
-				boardIndex += 1;
-			} else if (direction == 0) {
-				boardIndex -= 12;
-			} else { // WEST
-				boardIndex -= 1;
-			}
-			tile = board.getBoard()[boardIndex];
-
+			System.out.println(tile);
 			if (!tile.isEmpty()) {
 				Piece piece = tile.getPiece();
 				int angleDelta = signedDifference(direction, piece.getDirection());
@@ -77,9 +70,11 @@ public abstract class Action {
 					// finish game and declare winner based on colour of king
 					if(piece.getColour() == Colour.WHITE) {
 						board.setWhiteKing(false);
+						tile.setPiece(null);
 						return;
 					} else {
 						board.setBlackKing(false);
+						tile.setPiece(null);
 						return;
 					}
 				} else if (piece instanceof Switch) {
@@ -96,7 +91,24 @@ public abstract class Action {
 				}
 		
 			}
+			
+			boardIndex = getNextIndex(direction, boardIndex);
+			tile = board.getBoard()[boardIndex];
 		}
+		System.out.println("The laser shoots offboard");
+	}
+
+	public int getNextIndex(int direction, int boardIndex) {
+		if (direction == 180) {
+			boardIndex += 12;
+		} else if (direction == 90) {
+			boardIndex += 1;
+		} else if (direction == 0) {
+			boardIndex -= 12;
+		} else { // WEST
+			boardIndex -= 1;
+		}
+		return boardIndex;
 	}
 	
 	/**

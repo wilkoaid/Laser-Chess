@@ -29,6 +29,9 @@ public class Rotate extends Action {
 				
 		// fire laser to finish action
 		this.fireLaser();
+		
+		// recalculate occupied tiles
+		this.board.calculateOccupiedTiles();
 	}
 	
 //	public Direction nextDirection(int a) {
@@ -40,8 +43,7 @@ public class Rotate extends Action {
 //	}
 	
 	public String toString() {
-		return "Rotate " + this.sourceTile.toString() + " (" + this.sourceTile.getPiece().toString() +
-				") " + this.rotationDirection.toString();
+		return "Rotate " + this.sourceTile.toString() + " " + this.rotationDirection.toString();
 	}
 	
 }

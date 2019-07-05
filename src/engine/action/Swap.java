@@ -34,11 +34,12 @@ public class Swap extends Action {
 		
 		// fire laser to finish action
 		this.fireLaser();
+		
+		// recalculate occupied tiles
+		this.board.calculateOccupiedTiles();
 	}
 	
 	public String toString() {
-		return "Swap " + this.sourceTile.toString() + " (" + this.sourceTile.getPiece().toString() +
-				") with " + this.destinationTile.toString() + " (" + this.destinationTile.getPiece().getColour() + 
-				" " + this.destinationTile.getPiece().toString() + ")"; 
+		return "Swap " + this.sourceTile.toString() + " with " + this.destinationTile.toString(); 
 	}
 }

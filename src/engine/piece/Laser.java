@@ -14,7 +14,6 @@ public class Laser extends Piece {
 
 	public Laser(Colour colour, int direction) {
 		super(colour, direction);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
