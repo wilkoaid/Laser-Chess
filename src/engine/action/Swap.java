@@ -1,5 +1,6 @@
 package engine.action;
 
+import engine.board.Board;
 import engine.board.Tile;
 import engine.piece.King;
 import engine.piece.Piece;
@@ -8,8 +9,8 @@ import engine.piece.Switch;
 public class Swap extends Action {
 	private Tile destinationTile;
 	
-	public Swap(Tile sourceTile, Tile destinationTile) {
-		super(sourceTile);
+	public Swap(Tile sourceTile, Tile destinationTile, Board board) {
+		super(sourceTile,board);
 		this.destinationTile = destinationTile;
 	}
 

@@ -1,6 +1,7 @@
 package engine.action;
 
 import engine.Rotation;
+import engine.board.Board;
 import engine.board.Tile;
 import engine.piece.Piece;
 
@@ -8,8 +9,8 @@ public class Rotate extends Action {
 	private Rotation rotationDirection;
 	
 	
-	public Rotate(Tile sourceTile, Rotation rotationDirection) {
-		super(sourceTile);
+	public Rotate(Tile sourceTile, Rotation rotationDirection, Board board) {
+		super(sourceTile,board);
 		this.rotationDirection = rotationDirection;
 	}
 

@@ -65,8 +65,8 @@ public abstract class Piece {
 	public List<Action> calculateRotations(Tile thisTile, Board board) {
 		List<Action> rotations = new ArrayList<Action>();
 		
-		rotations.add(new Rotate(thisTile, Rotation.CLOCKWISE));
-		rotations.add(new Rotate(thisTile, Rotation.ANTICLOCKWISE));
+		rotations.add(new Rotate(thisTile, Rotation.CLOCKWISE, board));
+		rotations.add(new Rotate(thisTile, Rotation.ANTICLOCKWISE, board));
 		
 		return rotations;
 	}

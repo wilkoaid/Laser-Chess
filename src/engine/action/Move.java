@@ -5,14 +5,10 @@ import engine.board.Tile;
 
 public class Move extends Action {
 	private Tile destination;
-	private Board board;
-	
-	
 
 	public Move(Tile sourceTile, Tile destination, Board board) {
-		super(sourceTile);
+		super(sourceTile,board);
 		this.destination = destination;
-		this.board = board;
 	}
 
 	public Tile getDestination() {

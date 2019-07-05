@@ -1,12 +1,15 @@
 package engine.action;
 
+import engine.board.Board;
 import engine.board.Tile;
 
 public abstract class Action {
 	protected Tile sourceTile;
+	protected Board board;
 	
-	public Action(Tile sourceTile) {
+	public Action(Tile sourceTile, Board board) {
 		this.sourceTile = sourceTile;
+		this.board = board;
 	}
 
 	/**

@@ -37,7 +37,7 @@ public class Switch extends Piece {
 				} else {
 					if(!(board.getBoard()[destTileIndex].getPiece() instanceof King) &&
 							!(board.getBoard()[destTileIndex].getPiece() instanceof Switch)) {
-						moves.add(new Swap(thisTile, destinationTile));
+						moves.add(new Swap(thisTile, destinationTile, board));
 					}
 				}
 			}

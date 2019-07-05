@@ -24,9 +24,9 @@ public class Laser extends Piece {
 		// calculate rotation actions
 		if(thisTile.getPiece().direction == 0 ||
 				thisTile.getPiece().direction == 180) {
-			actions.add(new Rotate(thisTile, Rotation.ANTICLOCKWISE));
+			actions.add(new Rotate(thisTile, Rotation.ANTICLOCKWISE, board));
 		} else {
-			actions.add(new Rotate(thisTile, Rotation.CLOCKWISE));
+			actions.add(new Rotate(thisTile, Rotation.CLOCKWISE, board));
 		}
 		
 		return actions;
