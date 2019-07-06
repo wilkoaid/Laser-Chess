@@ -41,7 +41,7 @@ public abstract class Action {
 		int boardIndex = board.getArrayIndex(tile.getFile(), tile.getRank());
 		boardIndex = getNextIndex(direction, boardIndex);
 		tile = board.getBoard()[boardIndex];
-		System.out.println("The laser takes the following path: ");
+		System.out.println("The " + board.getTurn() + " laser takes the following path: ");
 		while (!tile.isOffboard()) {
 			System.out.println(tile);
 			if (!tile.isEmpty()) {
@@ -56,14 +56,20 @@ public abstract class Action {
 						direction = (direction + 90) % 360;
 					} else {
 						tile.setPiece(null);
+						System.out.println("The laser beam strikes the " + piece.getColour() + 
+								" deflector on an unprotected side and the deflector is destroyed.");
 						return;
 					}
 				} else if (piece instanceof Defender) {
 					// finish action and remove defender if laser kills defender
 					if(angleDelta == 180 || angleDelta == -180) {
+						System.out.println("The laser beam strikes the " + piece.getColour() + 
+								" defender on its protected side and is stopped.");
 						return;
 					} else {
 						tile.setPiece(null);
+						System.out.println("The laser beam strikes the " + piece.getColour() + 
+								" defender on an unprotected side and the defender is destroyed.");
 						return;
 					}
 				} else if (piece instanceof King) {
@@ -87,6 +93,8 @@ public abstract class Action {
 				} else { // piece == laser
 					// cannot kill laser piece
 					// finish action.
+					System.out.println("The laser beam strikes the " + piece.getColour() + 
+							" laser but it cannot be destroyed.");
 					return;
 				}
 		
@@ -95,7 +103,7 @@ public abstract class Action {
 			boardIndex = getNextIndex(direction, boardIndex);
 			tile = board.getBoard()[boardIndex];
 		}
-		System.out.println("The laser shoots offboard");
+		System.out.println("The laser shoots offboard.");
 	}
 
 	public int getNextIndex(int direction, int boardIndex) {

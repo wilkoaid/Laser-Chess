@@ -127,6 +127,8 @@ public class Board {
 	 * Calculate the set of Tiles that are currently occupied
 	 */
 	public void calculateOccupiedTiles() {
+		this.occupiedTilesBlack.clear();
+		this.occupiedTilesWhite.clear();
 		for(Tile tile : board) {
 			if(tile.getPiece() != null) {
 				if(tile.getPiece().getColour() == Colour.BLACK) {
@@ -139,39 +141,75 @@ public class Board {
 		}
 	}
 	
-	public void printActions() {
-		/*
-		 *  loop over occupied tiles for white or black, calculate actions.
-		 *  
-		 *  print to terminal the moves in format:
-		 *  e.g. 
-		 *       Rotate J8 (Laser) clockwise
-		 *       Rotate J8 (Laser) anti-clockwise
-		 *       Move H7 (Deflector) to G7
-		 *       Swap F5 (Switch) with G6 (BLACK Defender)
-		 *       etc.
-		 */
-		this.actions.clear(); // clear previous list
+	public void calculateAllActions() {
+		// loop over occupied tiles for white or black, calculate list of all actions.
+		this.actions.clear();  // clear previous list
 		if(turn == Colour.WHITE) {
-			int number = 1;
 			for(Tile tile : this.occupiedTilesWhite) {
 				List<Action> actions = tile.getPiece().calculateActions(tile,this);
-				for(Action action : actions) {
-					System.out.println(number + ". " + action);
-					number++;
-				}
 				this.actions.addAll(actions);
 			}
 		} else {
-			int number = 1;
 			for(Tile tile : this.occupiedTilesBlack) {
 				List<Action> actions = tile.getPiece().calculateActions(tile,this);
-				for(Action action : actions) {
-					System.out.println(number + ". " + action);
-					number++;
-				}
 				this.actions.addAll(actions);
 			}
+		}
+	}
+	
+	public void printActions() {
+		/*
+		 * print to terminal the moves in format:
+		 * 1. Rotate J8 (Laser) clockwise
+		 * 2. otate J8 (Laser) anti-clockwise 
+		 * 3. Move H7 (Deflector) to G7 
+		 * 4. Swap F5 (Switch) with G6 (BLACK Defender) etc.
+		 */
+		for (int i=0; i<this.actions.size(); i++) {
+			System.out.println((i+1) + ". " + this.actions.get(i));
+		}
+	}
+	
+	public void commandLineRun(Board board) {
+		while(board.blackKing == true && board.whiteKing == true){
+			System.out.println("\n\n------------------\n"
+					+ "It is now " + board.getTurn() + "'s turn. \n");
+			System.out.println("Choose from the following actions: ");
+			board.calculateAllActions();
+			board.printActions();
+			
+			boolean confirm = false;
+			while(!confirm) {
+				System.out.println("Enter the number corresponding to your choice: ");
+				Scanner in = new Scanner(System.in);
+				int i = in.nextInt();
+				Action action = board.getActions().get(i - 1);
+				System.out.println("You chose to: " + action);
+				System.out.println("Are you sure? [Y/N]");
+				String s = in.next();
+				s = s.toLowerCase();
+				if (s.equals("y")) {
+					confirm = true;
+					// perform action
+					action.makeAction();
+					if(board.getTurn() == Colour.WHITE) {
+						board.setTurn(Colour.BLACK);
+					} else {
+						board.setTurn(Colour.WHITE);
+					}
+					break;
+				} else if (s.equals("n")) {
+					continue;
+				} else {
+					System.out.println("Please enter 'Y' to confirm or 'N' to cancel.");
+				}
+				in.close();
+			}
+		}
+		if(board.blackKing == false) {
+			System.out.println("WHITE wins!");
+		} else {
+			System.out.println("BLACK wins!");
 		}
 	}
 

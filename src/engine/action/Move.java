@@ -19,7 +19,9 @@ public class Move extends Action {
 	public void makeAction() {
 		// move to tile
 		this.destination.setPiece(this.sourceTile.getPiece());
+		this.destination.setEmpty(false);
 		this.sourceTile.setPiece(null);
+		this.sourceTile.setEmpty(true);
 		
 		// fire laser to finish action
 		this.fireLaser();
