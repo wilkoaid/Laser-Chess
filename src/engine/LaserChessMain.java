@@ -1,9 +1,6 @@
 package engine;
 
-import engine.action.Action;
-import engine.board.*;
-
-import java.util.Scanner;
+import engine.board.Board;
 
 public class LaserChessMain {
 	public static void main(String[] args) {
