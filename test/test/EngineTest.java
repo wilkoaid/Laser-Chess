@@ -16,7 +16,7 @@ public class EngineTest {
 	// test converting between rank/file and board array index
 	@Test
 	public void test1() {
-		Board board = new Board();
+		Board board = new Board(Colour.WHITE);
 		File file1 = File.A;
 		Rank rank1 = Rank.ONE;
 		// A1
@@ -56,8 +56,8 @@ public class EngineTest {
 	// test creating occupied onboard tile
 	@Test
 	public void test4() {
-		Tile tile = new Tile(new King(Colour.WHITE,180),File.A,Rank.FIVE);
-		String expected = "A5";
+		Tile tile = new Tile(new King(Colour.WHITE, 180),File.A,Rank.FIVE);
+		String expected = "A5 (King)";
 		String actual = tile.toString();
 		
 		assertFalse(tile.isEmpty());
@@ -69,49 +69,97 @@ public class EngineTest {
 	// test list of active tiles
 	@Test
 	public void test5() {
-		Board board = new Board();
+		Board board = new Board(Colour.WHITE);
+		Set<String> expected = new HashSet<String>();
+		expected.add("A1 (Laser)");
+		expected.add("E1 (Defender)");
+		expected.add("F1 (King)");
+		expected.add("G1 (Defender)");
+		expected.add("H1 (Deflector)");
+		expected.add("C2 (Deflector)");
+		expected.add("A4 (Deflector)");
+		expected.add("E4 (Switch)");
+		expected.add("F4 (Switch)");
+		expected.add("H4 (Deflector)");
+		expected.add("A5 (Deflector)");
+		expected.add("H5 (Deflector)");
+		expected.add("G6 (Deflector)");
 		
-		Set<Tile> expected = new HashSet<Tile>();
+		Set<Tile> actual = board.getOccupiedTilesBlack();
 		
-		expected.add(new Tile(new Laser(Colour.BLACK, 90),File.A,Rank.ONE));
-		expected.add(new Tile(new Defender(Colour.BLACK, 180),File.E,Rank.ONE));
-		expected.add(new Tile(new King(Colour.BLACK, 180),File.F,Rank.ONE));
-		expected.add(new Tile(new Defender(Colour.BLACK, 180),File.G,Rank.ONE));
-		expected.add(new Tile(new Deflector(Colour.BLACK, 135),File.H,Rank.ONE));
-		expected.add(new Tile(new Deflector(Colour.BLACK, 225),File.C,Rank.TWO));
-		expected.add(new Tile(new Deflector(Colour.BLACK, 45),File.A,Rank.FOUR));
-		expected.add(new Tile(new Switch(Colour.BLACK, 45),File.E,Rank.FOUR));
-		expected.add(new Tile(new Switch(Colour.BLACK, 135),File.F,Rank.FOUR));
-		expected.add(new Tile(new Deflector(Colour.BLACK, 135),File.H,Rank.FOUR));
-		expected.add(new Tile(new Deflector(Colour.BLACK, 135),File.A,Rank.FIVE));
-		expected.add(new Tile(new Deflector(Colour.BLACK, 45),File.H,Rank.FIVE));
-		expected.add(new Tile(new Deflector(Colour.BLACK, 135),File.G,Rank.SIX));
-		
-		Set<Tile> actual = board.getActiveTilesBlack();
-		
-		assertEquals(expected,actual);
+		for(Tile tile : actual) {
+			assertTrue(expected.contains(tile.toString()));
+		}
 	}
 	
 	
 	//test firing laser
 	@Test
 	public void test6() {
-		Board board = new Board();
+		Board board = new Board(Colour.WHITE);
+		Tile[] arr = board.getBoard();
 		
 		// put piece on tile next to laser and fire laser
-		int takenPieceIndex = board.getArrayIndex(File.B,Rank.ONE);
-		board.getBoard()[takenPieceIndex].setPiece(new Deflector(Colour.WHITE,135));
-		board.getBoard()[takenPieceIndex].setEmpty(false);
-		Action action = new Move(board.getBoard()[takenPieceIndex],board.getBoard()[takenPieceIndex]);
+		int index = board.getArrayIndex(File.J,Rank.SEVEN);
+		arr[index].setPiece(new Deflector(Colour.WHITE, 45));
+		arr[index].setEmpty(false);
+		Action action = new Rotate(arr[index], Rotation.ANTICLOCKWISE, board);
 		action.fireLaser();
 		// piece is destroyed by laser, piece is removed
-		board.getBoard()[takenPieceIndex].setPiece(null);
-		board.getBoard()[takenPieceIndex].setEmpty(true);
 		
-		Tile expected = new Tile(File.B,Rank.ONE);
-		Tile actual = board.getBoard()[takenPieceIndex];
+		Tile testTile = new Tile(File.J,Rank.SEVEN);
+		String expected = testTile.toString();
+		String actual = arr[index].toString();
 		
 		assertEquals(expected,actual);
+	}
+	
+	// test firing laser and redirect onto deflector to take the piece
+	@Test
+	public void test7() {
+		Board board = new Board(Colour.WHITE);
+		Tile[] arr = board.getBoard();
+		
+		// put test pieces on board
+		int index1 = board.getArrayIndex(File.J, Rank.SEVEN);
+		int index2 = board.getArrayIndex(File.I, Rank.SEVEN);
+		arr[index1].setPiece(new Deflector(Colour.WHITE, 225));
+		arr[index1].setEmpty(false);
+		arr[index2].setPiece(new Deflector(Colour.WHITE, 315));
+		arr[index2].setEmpty(false);
+		Action action = new Rotate(arr[index2], Rotation.ANTICLOCKWISE, board);
+		action.fireLaser();
+		
+		Tile testTile = new Tile(File.I, Rank.SEVEN);
+		String expected = testTile.toString();
+		String actual = arr[index2].toString();
+		
+		assertEquals(expected, actual);
+	}
+
+	// test signedDifference method in Action class
+	@Test
+	public void test8() {
+		Board board = new Board(Colour.WHITE);
+		
+		Tile tile = new Tile();
+		
+		Action action = new Rotate(tile, Rotation.CLOCKWISE, board);
+		
+		int expected1 = 135;
+		int expected2 = -135;
+		int expected3 = -45;
+		int expected4 = 45;
+		
+		int actual1 = action.signedDifference(180, 45);
+		int actual2 = action.signedDifference(180, 315);
+		int actual3 = action.signedDifference(0, 45);
+		int actual4 = action.signedDifference(0, 315);
+		
+		assertEquals(expected1,actual1);
+		assertEquals(expected2,actual2);
+		assertEquals(expected3,actual3);
+		assertEquals(expected4,actual4);
 	}
 	
 	

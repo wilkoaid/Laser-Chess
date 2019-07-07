@@ -1,19 +1,16 @@
 package engine;
 
-import engine.board.*;
-import engine.action.*;
-import engine.piece.*;
+import engine.board.Board;
 
 public class LaserChessMain {
-
 	public static void main(String[] args) {
 		
-		Board board = new Board();
+		Board board = new Board(Colour.WHITE);
 		
-		System.out.println("It is now " + board.getTurn() + "'s turn");
-		
-		
-
+		board.commandLineRun(board);
 	}
 
+	
+
 }
+

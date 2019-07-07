@@ -1,14 +1,13 @@
 package engine.action;
 
+import engine.board.Board;
 import engine.board.Tile;
 
 public class Move extends Action {
 	private Tile destination;
-	
-	
 
-	public Move(Tile sourceTile, Tile destination) {
-		super(sourceTile);
+	public Move(Tile sourceTile, Tile destination, Board board) {
+		super(sourceTile,board);
 		this.destination = destination;
 	}
 
@@ -17,12 +16,22 @@ public class Move extends Action {
 	}
 
 	@Override
-	void makeMove() {
+	public void makeAction() {
 		// move to tile
-		/* CODE HERE  */
+		this.destination.setPiece(this.sourceTile.getPiece());
+		this.destination.setEmpty(false);
+		this.sourceTile.setPiece(null);
+		this.sourceTile.setEmpty(true);
 		
 		// fire laser to finish action
 		this.fireLaser();
+		
+		// recalculate occupied tiles
+		this.board.calculateOccupiedTiles();
+	}
+	
+	public String toString() {
+		return "Move " + this.sourceTile.toString() + " to " + this.destination.toString(); 
 	}
 	
 }
