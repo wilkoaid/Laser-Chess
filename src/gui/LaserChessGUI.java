@@ -18,7 +18,7 @@ public class LaserChessGUI extends Application {
 		stage.setScene(new Scene(control));
 		stage.setTitle("Laser Chess");
 		stage.setWidth(800);
-		stage.setHeight(400);
+		stage.setHeight(600);
 		stage.show();
 	}
 }

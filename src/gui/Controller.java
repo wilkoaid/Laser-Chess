@@ -1,5 +1,7 @@
 package gui;
 
+import java.io.IOException;
+
 import engine.Colour;
 import engine.board.Board;
 import javafx.fxml.FXML;
@@ -14,24 +16,30 @@ public class Controller extends HBox {
     @FXML private Button newGameButton;
     @FXML private Button helpButton;
     @FXML private Button quitButton;
-    @FXML private ComboBox<String> colourComboBox;
-    @FXML private ComboBox<String> setupComboBox;
+    @FXML private ComboBox<String> colourComboBox = new ComboBox<>();
+    @FXML private ComboBox<String> setupComboBox = new ComboBox<>();
 
     public Controller() {
-        FXMLLoader fxmlLoader =
-                new FXMLLoader(getClass().getResource("View.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
         Board board = new Board(Colour.WHITE);
+        
+        try {
+			fxmlLoader.load();
+			colourComboBox.getItems().addAll("White", "Black");
+			setupComboBox.getItems().addAll("ACE");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-        colourComboBox.getItems().addAll("White", "Black");
-
-        setupComboBox.getItems().addAll("ACE");
+        
 
 
 
-
+        
 
 
 

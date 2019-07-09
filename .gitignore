@@ -69,3 +69,4 @@ atlassian-ide-plugin.xml
 # Manifest files
 *.MF
 >>>>>>> d5212ef0f4b788ad6e61c478f7afcd98bdb638ec
+/LaserChess.eml
