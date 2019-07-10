@@ -36,7 +36,7 @@ public class Board {
 	/**
 	 * Initialise the board Tiles according to the "ACE" setup
 	 */
-	private void initialiseBoardACE() {
+	public void initialiseBoardACE() {
 		// set whole board to off-board tiles
 		for(int i = 0; i < this.board.length; i++) {
 			Tile tile = new Tile();

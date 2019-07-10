@@ -4,8 +4,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import static javafx.application.Application.launch;
-
 public class LaserChessGUI extends Application {
 
 	public static void main(String[] args) {
@@ -14,7 +12,7 @@ public class LaserChessGUI extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Controller control = new Controller();
+		Controller control = new Controller(stage);
 		stage.setScene(new Scene(control));
 		stage.setTitle("Laser Chess");
 		stage.setWidth(800);
