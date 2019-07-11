@@ -22,6 +22,7 @@ public class Defender extends Piece {
 		actions.addAll(calculateMoves(thisTile, board));
 		// calculate rotation actions
 		actions.addAll(calculateRotations(thisTile, board));
+		this.actions.addAll(actions);
 		return actions;
 	}
 	

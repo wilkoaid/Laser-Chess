@@ -21,6 +21,7 @@ public class King extends Piece {
 		List<Action> actions = new ArrayList<Action>();
 		// calculate movement actions
 		actions.addAll(calculateMoves(thisTile, board));
+		this.actions.addAll(actions);
 		return actions;
 	}
 

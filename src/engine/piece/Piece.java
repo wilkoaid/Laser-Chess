@@ -24,11 +24,13 @@ public abstract class Piece {
 	 							315: north-west */
 	private final Colour colour;
 	private final ImageView image;
+	protected List<Action> actions;
 	
 	protected Piece(Colour colour, int direction, ImageView image) {
 		this.colour = colour;
 		this.direction = direction;
 		this.image = image;
+		this.actions = new ArrayList<>();
 	}
 	
 	public int getDirection() {

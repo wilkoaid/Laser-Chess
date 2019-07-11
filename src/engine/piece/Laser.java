@@ -28,7 +28,7 @@ public class Laser extends Piece {
 		} else {
 			actions.add(new Rotate(thisTile, Rotation.CLOCKWISE, board));
 		}
-		
+		this.actions.addAll(actions);
 		return actions;
 	}
 	

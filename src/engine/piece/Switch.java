@@ -44,7 +44,7 @@ public class Switch extends Piece {
 			}
 		}
 		actions.addAll(moves);
-		
+		this.actions.addAll(actions);
 		
 		return actions;
 	}

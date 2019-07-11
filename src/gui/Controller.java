@@ -25,6 +25,7 @@ public class Controller extends HBox {
 	
 	private Stage stage;
 	private Board board;
+	private Piece pieceSelected;
 
     @FXML private Button newGameButton;
     @FXML private Button helpButton;
@@ -148,6 +149,7 @@ public class Controller extends HBox {
 				
 				// highlight move actions when piece is clicked on
 				image.setOnMouseClicked(e -> {
+					pieceSelected = piece;
 					highlightMoves();
 					
 				});
@@ -162,7 +164,6 @@ public class Controller extends HBox {
     }
     
     private void highlightMoves() {
-		// TODO Auto-generated method stub
 		
 	}
 
