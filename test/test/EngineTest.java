@@ -10,6 +10,7 @@ import engine.*;
 import engine.action.*;
 import engine.board.*;
 import engine.piece.*;
+import javafx.scene.image.ImageView;
 
 public class EngineTest {
 
@@ -56,7 +57,7 @@ public class EngineTest {
 	// test creating occupied onboard tile
 	@Test
 	public void test4() {
-		Tile tile = new Tile(new King(Colour.WHITE, 180),File.A,Rank.FIVE);
+		Tile tile = new Tile(new King(Colour.WHITE, 180, new ImageView("pieces/white_king.png")),File.A,Rank.FIVE);
 		String expected = "A5 (King)";
 		String actual = tile.toString();
 		
@@ -101,7 +102,7 @@ public class EngineTest {
 		
 		// put piece on tile next to laser and fire laser
 		int index = board.getArrayIndex(File.J,Rank.SEVEN);
-		arr[index].setPiece(new Deflector(Colour.WHITE, 45));
+		arr[index].setPiece(new Deflector(Colour.WHITE, 45, new ImageView("pieces/white_deflector.png")));
 		arr[index].setEmpty(false);
 		Action action = new Rotate(arr[index], Rotation.ANTICLOCKWISE, board);
 		action.fireLaser();
@@ -123,9 +124,9 @@ public class EngineTest {
 		// put test pieces on board
 		int index1 = board.getArrayIndex(File.J, Rank.SEVEN);
 		int index2 = board.getArrayIndex(File.I, Rank.SEVEN);
-		arr[index1].setPiece(new Deflector(Colour.WHITE, 225));
+		arr[index1].setPiece(new Deflector(Colour.WHITE, 225, new ImageView("pieces/white_deflector.png")));
 		arr[index1].setEmpty(false);
-		arr[index2].setPiece(new Deflector(Colour.WHITE, 315));
+		arr[index2].setPiece(new Deflector(Colour.WHITE, 315, new ImageView("pieces/white_deflector.png")));
 		arr[index2].setEmpty(false);
 		Action action = new Rotate(arr[index2], Rotation.ANTICLOCKWISE, board);
 		action.fireLaser();

@@ -7,12 +7,12 @@ import engine.Colour;
 import engine.action.Action;
 import engine.board.Board;
 import engine.board.Tile;
+import javafx.scene.image.ImageView;
 
 public class Deflector extends Piece {
 
-	public Deflector(Colour colour, int direction) {
-		super(colour, direction);
-		// TODO Auto-generated constructor stub
+	public Deflector(Colour colour, int direction, ImageView image) {
+		super(colour, direction, image);
 	}
 
 	@Override

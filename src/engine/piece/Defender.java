@@ -5,14 +5,14 @@ import java.util.List;
 
 import engine.Colour;
 import engine.action.Action;
-import engine.action.Move;
 import engine.board.Board;
 import engine.board.Tile;
+import javafx.scene.image.ImageView;
 
 public class Defender extends Piece {
 
-	public Defender(Colour colour, int direction) {
-		super(colour, direction);
+	public Defender(Colour colour, int direction, ImageView image) {
+		super(colour, direction, image);
 	}
 
 	@Override

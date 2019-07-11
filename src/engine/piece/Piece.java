@@ -10,6 +10,7 @@ import engine.action.Move;
 import engine.action.Rotate;
 import engine.board.Board;
 import engine.board.Tile;
+import javafx.scene.image.ImageView;
 
 public abstract class Piece {
 	protected int direction; /* angle in degrees
@@ -22,11 +23,12 @@ public abstract class Piece {
 	 							270: west
 	 							315: north-west */
 	private final Colour colour;
+	private final ImageView image;
 	
-	
-	protected Piece(Colour colour, int direction) {
+	protected Piece(Colour colour, int direction, ImageView image) {
 		this.colour = colour;
 		this.direction = direction;
+		this.image = image;
 	}
 	
 	public int getDirection() {
@@ -35,6 +37,10 @@ public abstract class Piece {
 
 	public Colour getColour() {
 		return colour;
+	}
+	
+	public ImageView getImage() {
+		return image;
 	}
 
 	public void setDirection(int direction) {

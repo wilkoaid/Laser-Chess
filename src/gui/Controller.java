@@ -1,10 +1,14 @@
 package gui;
 
 import java.io.IOException;
+import java.util.Set;
 
 import engine.Colour;
 import engine.board.Board;
 import engine.board.Tile;
+import engine.piece.Deflector;
+import engine.piece.Piece;
+import engine.piece.Switch;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -57,21 +61,15 @@ public class Controller extends HBox {
 				initialiseBoard();
 				setStartingColour();
 				
-				// draw tiles
-				for(Tile tile : board.getBoard()) {
-					if(!tile.isOffboard()) {
-						Rectangle rec = new Rectangle(50, 50);
-						rec.setFill(Color.GRAY);
-						rec.setStroke(Color.BLACK);
-						grid.add(rec, tile.getFile().getVal()-1, tile.getRank().getVal()-1);
-					}
-				}
+				// clear any former nodes to prevent duplicates
+				grid.getChildren().clear();
 				
-				// draw pieces
-				ImageView laser = new ImageView("laser.png");
-				grid.add(laser, 0, 0);
-				laser.setFitHeight(50);
-				laser.setFitWidth(50);
+				//draw tiles background
+				drawTiles();
+				
+				// draw black and white pieces
+				drawPieces(board.getOccupiedTilesBlack());
+				drawPieces(board.getOccupiedTilesWhite());
 			});
 			
 		} catch (IOException e) {
@@ -98,6 +96,39 @@ public class Controller extends HBox {
     	} else {
     		board.setTurn(Colour.BLACK);
     	}
+    }
+    
+    private void drawPieces(Set<Tile> occupiedTiles) {
+    	for(Tile tile : occupiedTiles) {
+			Piece piece = tile.getPiece();
+			int gridY = tile.getFile().getVal()-1;
+			int gridX = tile.getRank().getVal()-1;
+			if(piece instanceof Switch || 
+					piece instanceof Deflector) {
+				ImageView image = piece.getImage();
+				grid.add(image, gridY, gridX);
+				image.setFitWidth(50);
+				image.setFitHeight(50);
+				image.setRotate(piece.getDirection() - 45);	
+			} else {
+				ImageView image = piece.getImage();
+				grid.add(image, gridY, gridX);
+				image.setFitWidth(50);
+				image.setFitHeight(50);
+				image.setRotate(piece.getDirection());							
+			}
+		}
+    }
+    
+    private void drawTiles() {
+    	for(Tile tile : board.getBoard()) {
+			if(!tile.isOffboard()) {
+				Rectangle rec = new Rectangle(50, 50);
+				rec.setFill(Color.GRAY);
+				rec.setStroke(Color.BLACK);
+				grid.add(rec, tile.getFile().getVal()-1, tile.getRank().getVal()-1);
+			}
+		}
     }
 
 }

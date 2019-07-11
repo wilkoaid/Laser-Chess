@@ -7,11 +7,12 @@ import engine.Colour;
 import engine.action.Action;
 import engine.board.Board;
 import engine.board.Tile;
+import javafx.scene.image.ImageView;
 
 public class King extends Piece {
 
-	public King(Colour colour, int direction) {
-		super(colour, direction);
+	public King(Colour colour, int direction, ImageView image) {
+		super(colour, direction, image);
 		// TODO Auto-generated constructor stub
 	}
 
