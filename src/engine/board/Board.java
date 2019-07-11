@@ -170,16 +170,18 @@ public class Board {
 	public void calculateAllActions() {
 		// loop over occupied tiles for white or black, calculate list of all actions.
 		this.actions.clear();  // clear previous list
+		List<Action> actionsWhite = null;
+		List<Action> actionsBlack = null;
+		for(Tile tile : this.occupiedTilesWhite) {
+			actionsWhite = tile.getPiece().calculateActions(tile,this);
+		}
+		for(Tile tile : this.occupiedTilesBlack) {
+			actionsBlack = tile.getPiece().calculateActions(tile,this);
+		}
 		if(turn == Colour.WHITE) {
-			for(Tile tile : this.occupiedTilesWhite) {
-				List<Action> actions = tile.getPiece().calculateActions(tile,this);
-				this.actions.addAll(actions);
-			}
+			this.actions.addAll(actionsWhite);
 		} else {
-			for(Tile tile : this.occupiedTilesBlack) {
-				List<Action> actions = tile.getPiece().calculateActions(tile,this);
-				this.actions.addAll(actions);
-			}
+			this.actions.addAll(actionsBlack);
 		}
 	}
 	

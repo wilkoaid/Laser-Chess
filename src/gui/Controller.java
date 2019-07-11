@@ -18,6 +18,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.effect.BlurType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Glow;
+import javafx.scene.effect.Shadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
@@ -35,6 +39,7 @@ public class Controller extends HBox {
 	private Board board;
 	private Piece pieceSelected;
 	private boolean isSelected = false;
+	private ImageView imageViewSelected = null;
 
     @FXML private Button newGameButton;
     @FXML private Button helpButton;
@@ -166,10 +171,18 @@ public class Controller extends HBox {
 			imageView.setOnMouseClicked(e -> {
 				if(isSelected) {
 					unhighlightMoves();
-					isSelected = false;
+					imageViewSelected.setEffect(null);
 				}
 				pieceSelected = piece;
 				isSelected = true;
+				imageViewSelected = imageView;
+				DropShadow shadow = new DropShadow();
+				shadow.setBlurType(BlurType.GAUSSIAN);
+				shadow.setHeight(5);
+				shadow.setWidth(5);
+				shadow.setRadius(10);
+				shadow.setColor(Color.RED);
+				imageView.setEffect(shadow);
 				highlightMoves();
 			});
 			
