@@ -5,32 +5,21 @@ import java.util.List;
 import java.util.Set;
 
 import engine.Colour;
-import engine.action.Action;
-import engine.action.Move;
-import engine.board.Board;
-import engine.board.Tile;
-import engine.piece.Deflector;
-import engine.piece.Piece;
-import engine.piece.Switch;
-import javafx.collections.ObservableList;
+import engine.action.*;
+import engine.board.*;
+import engine.piece.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.effect.BlurType;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Glow;
-import javafx.scene.effect.Shadow;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.scene.image.*;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
 
 public class Controller extends HBox {
