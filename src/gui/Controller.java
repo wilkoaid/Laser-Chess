@@ -42,6 +42,8 @@ public class Controller extends HBox {
         fxmlLoader.setController(this);
         
         this.stage = stage;
+        this.stage.setMinHeight(600);
+        this.stage.setMinWidth(800);
         
         board = new Board(Colour.WHITE);
 
@@ -59,11 +61,44 @@ public class Controller extends HBox {
 			// set quit button function on click
 			quitButton.setOnMouseClicked(e -> this.stage.close());
 			
+			
+			ImageView rotateClockwiseIcon = new ImageView("resources/icons/rotate_clockwise.png");
+			rotateClockwiseIcon.setFitHeight(15);
+			rotateClockwiseIcon.setFitWidth(15);
+			rotateClockwise.setGraphic(rotateClockwiseIcon);
+			rotateClockwise.setOnMouseClicked(e -> {
+				// get piece currently selected
+				
+				// rotate piece in model
+				
+				// rotate piece image
+				
+			});
+			
+			ImageView rotateAntiClockwiseIcon = new ImageView("resources/icons/rotate_anticlockwise.png");
+			rotateAntiClockwiseIcon.setFitHeight(15);
+			rotateAntiClockwiseIcon.setFitWidth(15);
+			rotateAntiClockwise.setGraphic(rotateAntiClockwiseIcon);
+			rotateAntiClockwise.setOnMouseClicked(e -> {
+				// get piece currently selected
+				
+				// rotate piece in model
+				
+				// rotate piece image
+				
+			});
+			
+			// set turn text
+			turnText.setText("");
+			
 			// set new game button function on click
 			newGameButton.setOnMouseClicked(e -> {
 				// initialise model
 				initialiseBoard();
 				setStartingColour();
+				
+				// set turn text
+				turnText.setText("Current turn: " + board.getTurn().toString());
 				
 				// clear any former nodes to prevent duplicates
 				grid.getChildren().clear();
@@ -91,10 +126,10 @@ public class Controller extends HBox {
     }
 
     public void setStartingColour() {
-    	if(colourChoiceBox.getValue().equals("White")) {
-    		board.setTurn(Colour.WHITE);
-    	} else {
+    	if(colourChoiceBox.getValue().equals("Black")) {
     		board.setTurn(Colour.BLACK);
+    	} else {
+    		board.setTurn(Colour.WHITE);
     	}
     }
     
@@ -111,6 +146,7 @@ public class Controller extends HBox {
 				image.setFitHeight(50);
 				image.setRotate(piece.getDirection() - 45);	
 				
+				// highlight move actions when piece is clicked on
 				image.setOnMouseClicked(e -> {
 					highlightMoves();
 					
