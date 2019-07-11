@@ -53,7 +53,7 @@ public class Controller extends HBox {
 			setupChoiceBox.setValue("<< board setup >>");
 			
 			// set quit button function on click
-			quitButton.setOnMouseClicked(e -> closeWindow());
+			quitButton.setOnMouseClicked(e -> this.stage.close());
 			
 			// set new game button function on click
 			newGameButton.setOnMouseClicked(e -> {
@@ -76,10 +76,6 @@ public class Controller extends HBox {
 			e.printStackTrace();
 		}
 
-    }
-    
-    public void closeWindow() {
-    	this.stage.close();
     }
     
     public void initialiseBoard() {
