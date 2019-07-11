@@ -184,6 +184,9 @@ public class Controller extends HBox {
 				shadow.setColor(Color.RED);
 				imageView.setEffect(shadow);
 				highlightMoves();
+				if(pieceSelected instanceof Switch) {
+					// show swap actions too
+				}
 			});
 			
 		}
@@ -218,6 +221,12 @@ public class Controller extends HBox {
 				rec.setFill(Color.GRAY);
 				rec.setStroke(Color.BLACK);
 				grid.add(rec, tile.getFile().getVal()-1, tile.getRank().getVal()-1);
+				
+				rec.setOnMouseClicked(e -> {
+					if(rec.getFill().equals(Color.LIGHTGREEN)) {
+						// perform move or swap action
+					}
+				});
 			}
     	}
 	}
