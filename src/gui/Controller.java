@@ -16,6 +16,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.scene.image.*;
 import javafx.stage.Stage;
@@ -31,6 +32,9 @@ public class Controller extends HBox {
     @FXML private ChoiceBox<String> colourChoiceBox = new ChoiceBox<>();
     @FXML private ChoiceBox<String> setupChoiceBox = new ChoiceBox<>();
     @FXML private GridPane grid;
+    @FXML private Text turnText;
+    @FXML private Button rotateClockwise;
+    @FXML private Button rotateAntiClockwise;
 
     public Controller(Stage stage) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("View.fxml"));
@@ -106,6 +110,11 @@ public class Controller extends HBox {
 				image.setFitWidth(50);
 				image.setFitHeight(50);
 				image.setRotate(piece.getDirection() - 45);	
+				
+				image.setOnMouseClicked(e -> {
+					highlightMoves();
+					
+				});
 			} else {
 				ImageView image = piece.getImage();
 				grid.add(image, gridY, gridX);
@@ -116,7 +125,12 @@ public class Controller extends HBox {
 		}
     }
     
-    private void drawTiles() {
+    private void highlightMoves() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void drawTiles() {
     	for(Tile tile : board.getBoard()) {
 			if(!tile.isOffboard()) {
 				Rectangle rec = new Rectangle(50, 50);
