@@ -7,6 +7,10 @@ import engine.piece.*;
 
 public abstract class Action {
 	protected Tile sourceTile;
+	public Tile getSourceTile() {
+		return sourceTile;
+	}
+
 	protected Board board;
 	
 	public Action(Tile sourceTile, Board board) {

@@ -7,11 +7,12 @@ import engine.Colour;
 import engine.action.Action;
 import engine.board.Board;
 import engine.board.Tile;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Defender extends Piece {
 
-	public Defender(Colour colour, int direction, ImageView image) {
+	public Defender(Colour colour, int direction, Image image) {
 		super(colour, direction, image);
 	}
 

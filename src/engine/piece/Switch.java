@@ -9,11 +9,12 @@ import engine.action.Move;
 import engine.action.Swap;
 import engine.board.Board;
 import engine.board.Tile;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Switch extends Piece {
 
-	public Switch(Colour colour, int direction, ImageView image) {
+	public Switch(Colour colour, int direction, Image image) {
 		super(colour, direction, image);
 	}
 

@@ -1,16 +1,21 @@
 package gui;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 import engine.Colour;
+import engine.action.Action;
+import engine.action.Move;
 import engine.board.Board;
 import engine.board.Tile;
 import engine.piece.Deflector;
 import engine.piece.Piece;
 import engine.piece.Switch;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.GridPane;
@@ -19,6 +24,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
 import javafx.scene.image.*;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.stage.Stage;
 
 public class Controller extends HBox {
@@ -26,6 +34,7 @@ public class Controller extends HBox {
 	private Stage stage;
 	private Board board;
 	private Piece pieceSelected;
+	private boolean isSelected = false;
 
     @FXML private Button newGameButton;
     @FXML private Button helpButton;
@@ -96,6 +105,7 @@ public class Controller extends HBox {
 			newGameButton.setOnMouseClicked(e -> {
 				// initialise model
 				initialiseBoard();
+				board.calculateAllActions();
 				setStartingColour();
 				
 				// set turn text
@@ -139,33 +149,54 @@ public class Controller extends HBox {
 			Piece piece = tile.getPiece();
 			int gridY = tile.getFile().getVal()-1;
 			int gridX = tile.getRank().getVal()-1;
+			
+			Image image = piece.getImage();
+			ImageView imageView = new ImageView(image);
+			grid.add(imageView, gridY, gridX);
+			imageView.setFitWidth(50);
+			imageView.setFitHeight(50);
+			
 			if(piece instanceof Switch || 
 					piece instanceof Deflector) {
-				ImageView image = piece.getImage();
-				grid.add(image, gridY, gridX);
-				image.setFitWidth(50);
-				image.setFitHeight(50);
-				image.setRotate(piece.getDirection() - 45);	
-				
-				// highlight move actions when piece is clicked on
-				image.setOnMouseClicked(e -> {
-					pieceSelected = piece;
-					highlightMoves();
-					
-				});
+				imageView.setRotate(piece.getDirection() - 45);	
 			} else {
-				ImageView image = piece.getImage();
-				grid.add(image, gridY, gridX);
-				image.setFitWidth(50);
-				image.setFitHeight(50);
-				image.setRotate(piece.getDirection());							
+				imageView.setRotate(piece.getDirection());	
 			}
+			
+			imageView.setOnMouseClicked(e -> {
+				if(isSelected) {
+					unhighlightMoves();
+					isSelected = false;
+				}
+				pieceSelected = piece;
+				isSelected = true;
+				highlightMoves();
+			});
+			
 		}
     }
     
     private void highlightMoves() {
-		
+		List<Action> possibleActions = pieceSelected.getActions();
+		for(Action action : possibleActions) {
+			if(action instanceof Move) {
+				Tile destination = ((Move) action).getDestination();
+				Rectangle node = (Rectangle) grid.getChildren().get((destination.getFile().getVal()-1) + (destination.getRank().getVal()-1)*10);
+				node.setFill(Color.LIGHTGREEN);
+			}
+		}
 	}
+    
+    private void unhighlightMoves(){
+    	List<Action> possibleActions = pieceSelected.getActions();
+		for(Action action : possibleActions) {
+			if(action instanceof Move) {
+				Tile destination = ((Move) action).getDestination();
+				Rectangle node = (Rectangle) grid.getChildren().get((destination.getFile().getVal()-1) + (destination.getRank().getVal()-1)*10);
+				node.setFill(Color.GRAY);
+			}
+		}
+    }
 
 	private void drawTiles() {
     	for(Tile tile : board.getBoard()) {
@@ -175,7 +206,7 @@ public class Controller extends HBox {
 				rec.setStroke(Color.BLACK);
 				grid.add(rec, tile.getFile().getVal()-1, tile.getRank().getVal()-1);
 			}
-		}
-    }
+    	}
+	}
 
 }

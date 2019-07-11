@@ -10,6 +10,7 @@ import engine.action.Move;
 import engine.action.Rotate;
 import engine.board.Board;
 import engine.board.Tile;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class Piece {
@@ -23,10 +24,18 @@ public abstract class Piece {
 	 							270: west
 	 							315: north-west */
 	private final Colour colour;
-	private final ImageView image;
-	protected List<Action> actions;
+	private final Image image;
+	protected List<Action> actions = new ArrayList<>();;
 	
-	protected Piece(Colour colour, int direction, ImageView image) {
+	public List<Action> getActions() {
+		return actions;
+	}
+
+	public void setActions(List<Action> actions) {
+		this.actions = actions;
+	}
+
+	protected Piece(Colour colour, int direction, Image image) {
 		this.colour = colour;
 		this.direction = direction;
 		this.image = image;
@@ -41,7 +50,7 @@ public abstract class Piece {
 		return colour;
 	}
 	
-	public ImageView getImage() {
+	public Image getImage() {
 		return image;
 	}
 
